@@ -119,6 +119,21 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Page Indicator Badges */
+        .page-badge {
+            background-color: #0284c7;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 14px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 12px;
+            display: inline-block;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
         /* Big Banner Title */
         .hero-banner {
             text-align: center;
@@ -154,6 +169,9 @@
             margin-top: 0; 
             border-bottom: 3px solid #f1f5f9; 
             padding-bottom: 12px; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
         h2 { 
@@ -253,7 +271,7 @@
             margin-top: 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
             color: #0f172a;
         }
 
@@ -418,10 +436,13 @@
             <!-- Hero Title Banner -->
             <div class="hero-banner">
                 <h1>The Phonetics of Chinese</h1>
-                <p>KUAILE XUE HANYU &bull; LESSON 1</p>
+                <p>KUAILE XUE HANYU &bull; LESSON 1 <span class="page-badge">KLXHY pg 1 - 7</span></p>
             </div>
 
-            <h1>1. Introduction to Pinyin & Syllables</h1>
+            <h1>
+                <span>1. Introduction to Pinyin & Syllables</span>
+                <span class="page-badge">KLXHY pg 1</span>
+            </h1>
             <p>Each Chinese character usually represents a single syllable. For example, the character <span class="kw-pinyin">你</span> (you) has the Pinyin <span class="kw-pinyin">nǐ</span>.</p>
             
             <h2>The Components of Pinyin</h2>
@@ -439,7 +460,10 @@
 
         <!-- Section 2: Tones -->
         <div id="tones" class="section">
-            <h1>2. The Four Tones</h1>
+            <h1>
+                <span>2. The Four Tones</span>
+                <span class="page-badge">KLXHY pg 3 - 4</span>
+            </h1>
             <p>Different <span class="kw-tone">Tones</span> may express entirely different meanings. <br>
                 For example: <span class="kw-pinyin">mā</span> (mother) vs. <span class="kw-pinyin">mà</span> (scold).
             </p>
@@ -536,7 +560,10 @@
 
         <!-- Section 3: Initials -->
         <div id="initials" class="section">
-            <h1>3. All 21 Initials (Consonants)</h1>
+            <h1>
+                <span>3. All 21 Initials (Consonants)</span>
+                <span class="page-badge">KLXHY pg 1 - 2</span>
+            </h1>
             <p>The <span class="kw-initial">Initial</span> precedes the final in a syllable. Pay special attention to the Suku Kata hacks to master the pronunciation.</p>
 
             <table>
@@ -680,10 +707,13 @@
 
         <!-- Section 4: Finals -->
         <div id="finals" class="section">
-            <h1>4. All 36 Finals (Vowels)</h1>
+            <h1>
+                <span>4. All 36 Finals (Vowels)</span>
+                <span class="page-badge">KLXHY pg 3</span>
+            </h1>
             <p>The <span class="kw-final">Final</span> follows the initial. Pronunciation depends on tongue height, position, and lip shape.</p>
 
-            <h3>A. Simple Finals (6) & Special Final (1)</h3>
+            <h3>A. Simple Finals (6) & Special Final (1) <span class="page-badge">KLXHY pg 3</span></h3>
             <table>
                 <tr>
                     <th>Final</th>
@@ -702,7 +732,7 @@
 
             <!-- Simple Finals + 5 Tones Practice Table -->
             <div style="background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 10px; padding: 20px; margin: 25px 0;">
-                <h3 style="margin-top: 0; color: #166534;">🗣️ Master Practice: Simple Finals + All 5 Tones</h3>
+                <h3 style="margin-top: 0; color: #166534;">🗣️ Master Practice: Simple Finals + All 5 Tones <span class="page-badge">KLXHY pg 3-4</span></h3>
                 <p style="font-size: 1.1rem; color: #15803d;">Practice reading each simple final aloud across all five tone pitches:</p>
                 
                 <table style="background: white; font-size: 1.25em; text-align: center;">
@@ -724,7 +754,7 @@
                 </table>
             </div>
 
-            <h3>B. Compound Finals (13)</h3>
+            <h3>B. Compound Finals (13) <span class="page-badge">KLXHY pg 3</span></h3>
             <table>
                 <tr>
                     <th>Final</th>
@@ -746,7 +776,7 @@
                 <tr><td><span class="kw-pinyin">üe</span> (yue)</td><td><strong>yueh</strong></td><td><span class="kw-pinyin">xuéxí</span> (to learn)</td></tr>
             </table>
 
-            <h3>C. Nasal Finals (16)</h3>
+            <h3>C. Nasal Finals (16) <span class="page-badge">KLXHY pg 3</span></h3>
             <p><strong>Hack:</strong> <span class="kw-pinyin">-n</span> sounds like BI "wi<strong>n</strong>" (front nasal). <span class="kw-pinyin">-ng</span> sounds like BI "wi<strong>ng</strong>" (back nasal).</p>
             <table>
                 <tr>
@@ -778,11 +808,17 @@
 
         <!-- Section 5: Rules -->
         <div id="rules" class="section">
-            <h1>5. Complete Pinyin Spelling Rules</h1>
+            <h1>
+                <span>5. Complete Pinyin Spelling Rules</span>
+                <span class="page-badge">KLXHY pg 4 - 5</span>
+            </h1>
             
             <!-- Rule 1: Bodyguards -->
             <div class="rule-card">
-                <h3>🛡️ Rule #1: The "Y & W" Bodyguards (Zero Initial Syllables)</h3>
+                <h3>
+                    <span>🛡️ Rule #1: The "Y & W" Bodyguards (Zero Initial Syllables)</span>
+                    <span class="page-badge">KLXHY pg 4</span>
+                </h3>
                 <p>The vowels <strong>i</strong>, <strong>u</strong>, and <strong>ü</strong> are shy! When forming standalone syllables without a consonant initial, they need a bodyguard ("y" or "w"):</p>
                 
                 <div class="visual-flow">
@@ -816,7 +852,10 @@
 
             <!-- Rule 2: Dropping Dots Textbook Table -->
             <div class="rule-card">
-                <h3>🎩 Rule #2: Dropping Dots on "ü"</h3>
+                <h3>
+                    <span>🎩 Rule #2: Dropping Dots on "ü"</span>
+                    <span class="page-badge">KLXHY pg 4 - 5</span>
+                </h3>
                 <p>When the vowel <strong>ü</strong> combines with <strong>j, q, x</strong>, the two dots over it are <strong>OMITTED</strong>:</p>
 
                 <table style="text-align: center; font-size: 1.15em;">
@@ -859,7 +898,10 @@
 
             <!-- Rule 3: Tone Crown Ladder -->
             <div class="rule-card">
-                <h3>👑 Rule #3: Who Gets the Tone Crown? (6 Complete Rules)</h3>
+                <h3>
+                    <span>👑 Rule #3: Who Gets the Tone Crown? (6 Complete Rules)</span>
+                    <span class="page-badge">KLXHY pg 5</span>
+                </h3>
                 <p>When placing tone marks, the vowel with the biggest mouth opens the widest to wear the crown!</p>
                 
                 <div class="ladder-bar">
@@ -905,7 +947,10 @@
 
             <!-- Rule 4: Syllable Slicer -->
             <div class="rule-card">
-                <h3>✂️ Rule #4: The Syllable Slicer (')</h3>
+                <h3>
+                    <span>✂️ Rule #4: The Syllable Slicer (')</span>
+                    <span class="page-badge">KLXHY pg 5</span>
+                </h3>
                 <p>When a syllable starting with <strong>a, o, e</strong> follows another syllable, use an apostrophe <strong>(')</strong> in between to avoid confusion over syllable boundaries!</p>
                 
                 <div style="display: flex; align-items: center; justify-content: center; gap: 20px; background: #f1f5f9; padding: 16px; border-radius: 10px; font-family: monospace; font-size: 1.2em; flex-wrap: wrap;">
@@ -917,7 +962,10 @@
 
             <!-- Rule 5: Word Glue, Caps & Syllable Counting -->
             <div class="rule-card">
-                <h3>✍️ Rule #5: Word Glue & Big Letters</h3>
+                <h3>
+                    <span>✍️ Rule #5: Word Glue & Big Letters</span>
+                    <span class="page-badge">KLXHY pg 5</span>
+                </h3>
 
                 <!-- Syllable Counting Box -->
                 <div style="background: #f0fdf4; border: 2px solid #bbf7d0; padding: 16px 20px; border-radius: 8px; margin-bottom: 20px;">
@@ -957,11 +1005,17 @@
 
         <!-- Section 6: In-Class Exercises -->
         <div id="exercises" class="section">
-            <h1>6. In-Class Exercises (KuaiLe Xue HanYu Practice)</h1>
+            <h1>
+                <span>6. In-Class Exercises (KuaiLe Xue HanYu Practice)</span>
+                <span class="page-badge">KLXHY pg 6 - 7</span>
+            </h1>
             
             <!-- Exercise A -->
             <div class="exercise-card">
-                <h3>Exercise A: Identify Initials, Finals & Complete Syllables</h3>
+                <h3>
+                    <span>Exercise A: Identify Initials, Finals & Complete Syllables</span>
+                    <span class="page-badge">KLXHY pg 6</span>
+                </h3>
                 <p><strong>1. Identify the Initials and Finals:</strong> Identify the initial consonant and final vowel for each syllable below:</p>
                 <div class="rule-formula" style="letter-spacing: 4px; font-weight: bold;">
                     bāo &nbsp;|&nbsp; shuǐ &nbsp;|&nbsp; míng &nbsp;|&nbsp; tiān &nbsp;|&nbsp; chòu &nbsp;|&nbsp; zhāng &nbsp;|&nbsp; xiào
@@ -980,7 +1034,10 @@
 
             <!-- Exercise B -->
             <div class="exercise-card">
-                <h3>Exercise B: Add the Correct Tones</h3>
+                <h3>
+                    <span>Exercise B: Add the Correct Tones</span>
+                    <span class="page-badge">KLXHY pg 6</span>
+                </h3>
                 <p>Place the correct tone marks over the appropriate vowel according to tone rules:</p>
                 <table style="font-size: 1.05rem;">
                     <tr><td>1. ma (1st tone)</td><td>2. shi (2nd tone)</td><td>3. lü (3rd tone)</td><td>4. cuo (4th tone)</td></tr>
@@ -991,7 +1048,10 @@
 
             <!-- Exercise C -->
             <div class="exercise-card">
-                <h3>Exercise C: Tone Discrimination</h3>
+                <h3>
+                    <span>Exercise C: Tone Discrimination</span>
+                    <span class="page-badge">KLXHY pg 6 - 7</span>
+                </h3>
                 <p><strong>1. Listen & Select (Choose A, B, C, or D):</strong></p>
                 <ol style="line-height: 2;">
                     <li>Teacher dictation: (前) &rarr; A. qiān &nbsp; B. qián &nbsp; C. qiǎn &nbsp; D. qiàn</li>
@@ -1011,7 +1071,10 @@
 
             <!-- Exercise D -->
             <div class="exercise-card">
-                <h3>Exercise D: Sound Discrimination</h3>
+                <h3>
+                    <span>Exercise D: Sound Discrimination</span>
+                    <span class="page-badge">KLXHY pg 7</span>
+                </h3>
                 <p>Listen and identify the correct Pinyin option you hear:</p>
                 <table style="font-size: 1.05rem;">
                     <tr><td>1. A. zhuō vs B. chuō (桌)</td><td>6. A. dīng vs B. tīng (听)</td></tr>
@@ -1024,7 +1087,10 @@
 
             <!-- Exercise E -->
             <div class="exercise-card">
-                <h3>Exercise E: Rewrite with Correct Pinyin Formatting</h3>
+                <h3>
+                    <span>Exercise E: Rewrite with Correct Pinyin Formatting</span>
+                    <span class="page-badge">KLXHY pg 7</span>
+                </h3>
                 <p>Correct tone numbers into tone marks, apply capitalization, and fix spacing/word boundary formatting:</p>
                 <ol style="line-height: 2.2; font-family: monospace;">
                     <li>lin2 na4 shi4 wo3 de peng2you.</li>
@@ -1071,7 +1137,10 @@
 
         <!-- Section 7: Homework & Review -->
         <div id="resources" class="section">
-            <h1>7. Post-Class Review & Homework</h1>
+            <h1>
+                <span>7. Post-Class Review & Homework</span>
+                <span class="page-badge">KLXHY pg 7</span>
+            </h1>
             
             <h3 style="color: #166534; font-size: 1.5rem;">📝 Homework Assignments</h3>
             <p>Please complete the following exercises before our next class:</p>
