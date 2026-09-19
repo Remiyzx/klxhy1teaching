@@ -163,8 +163,8 @@
             border: 1px solid #ffe58f;
         }
 
-        /* Rule Cards */
-        .rule-card {
+        /* Rule Cards & Exercise Cards */
+        .rule-card, .exercise-card {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
@@ -173,13 +173,18 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.02);
             border-top: 4px solid var(--kw-rule);
         }
-        .rule-card h3 {
+        
+        .exercise-card {
+            border-top: 4px solid var(--kw-initial);
+        }
+
+        .rule-card h3, .exercise-card h3 {
             margin-top: 0;
-            color: var(--kw-rule);
             display: flex;
             align-items: center;
             gap: 10px;
         }
+
         .rule-formula {
             background: #f1f2f6;
             padding: 10px;
@@ -188,6 +193,23 @@
             font-family: monospace;
             font-size: 1.1em;
             margin: 10px 0;
+        }
+
+        /* Answer Key Collapsible */
+        details.answer-key {
+            background-color: #e8f5e9;
+            border: 1px solid #c8e6c9;
+            border-radius: 6px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        details.answer-key summary {
+            font-weight: bold;
+            color: #2e7d32;
+            cursor: pointer;
+            outline: none;
+            font-size: 1.05em;
         }
 
         .resource-link, .hw-link {
@@ -229,7 +251,8 @@
         <button class="menu-btn" onclick="showSection('initials', this)">3. Initials (21)</button>
         <button class="menu-btn" onclick="showSection('finals', this)">4. Finals (36)</button>
         <button class="menu-btn" onclick="showSection('rules', this)">5. Spelling Rules</button>
-        <button class="menu-btn" onclick="showSection('resources', this)">6. Homework & Review</button>
+        <button class="menu-btn" onclick="showSection('exercises', this)">6. In-Class Exercises</button>
+        <button class="menu-btn" onclick="showSection('resources', this)">7. Homework & Review</button>
     </div>
 
     <!-- Main Content -->
@@ -304,49 +327,48 @@
                 </tr>
             </table>
 
-            <!-- SVG 5-Point Tone Scale Diagram -->
+            <!-- SVG 5-Point Tone Scale Diagram (Fully English) -->
             <div class="tone-chart-container">
-                <h3 style="margin-top:0; color: #2c3e50;">Tone Pitch Chart (五度标记法)</h3>
-                <svg viewBox="0 0 380 250" style="max-width: 420px; width: 100%;">
+                <h3 style="margin-top:0; color: #2c3e50;">5-Point Pitch Scale Chart</h3>
+                <svg viewBox="0 0 400 260" style="max-width: 480px; width: 100%; display: block; margin: 0 auto;">
                     <defs>
-                        <!-- Arrowheads -->
                         <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"/></marker>
                         <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#27ae60"/></marker>
                         <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2980b9"/></marker>
                         <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8e44ad"/></marker>
                     </defs>
 
-                    <!-- Dotted Pitch Lines -->
-                    <line x1="30" y1="35" x2="310" y2="35" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="325" y="40" font-size="18" font-weight="bold" fill="#333">五 (5)</text>
+                    <!-- Pitch Level Lines -->
+                    <line x1="30" y1="35" x2="310" y2="35" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="325" y="42" font-size="18" font-weight="bold" fill="#333">5 (High)</text>
 
-                    <line x1="30" y1="75" x2="310" y2="75" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="325" y="80" font-size="18" font-weight="bold" fill="#333">四 (4)</text>
+                    <line x1="30" y1="75" x2="310" y2="75" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="325" y="82" font-size="18" font-weight="bold" fill="#333">4</text>
 
-                    <line x1="30" y1="115" x2="310" y2="115" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="325" y="120" font-size="18" font-weight="bold" fill="#333">三 (3)</text>
+                    <line x1="30" y1="115" x2="310" y2="115" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="325" y="122" font-size="18" font-weight="bold" fill="#333">3</text>
 
-                    <line x1="30" y1="155" x2="310" y2="155" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="325" y="160" font-size="18" font-weight="bold" fill="#333">二 (2)</text>
+                    <line x1="30" y1="155" x2="310" y2="155" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="325" y="162" font-size="18" font-weight="bold" fill="#333">2</text>
 
-                    <line x1="30" y1="195" x2="310" y2="195" stroke="#ccc" stroke-width="1" stroke-dasharray="3,3"/>
-                    <text x="325" y="200" font-size="18" font-weight="bold" fill="#333">一 (1)</text>
+                    <line x1="30" y1="195" x2="310" y2="195" stroke="#ccc" stroke-width="1.5" stroke-dasharray="4,4"/>
+                    <text x="325" y="202" font-size="18" font-weight="bold" fill="#333">1 (Low)</text>
 
                     <!-- 1st Tone (Red: 5-5) -->
-                    <line x1="30" y1="35" x2="300" y2="35" stroke="#e74c3c" stroke-width="4" marker-end="url(#arrow-red)"/>
-                    <text x="130" y="25" font-size="14" font-weight="bold" fill="#e74c3c">第一声 (5-5)</text>
+                    <line x1="30" y1="35" x2="300" y2="35" stroke="#e74c3c" stroke-width="4.5" marker-end="url(#arrow-red)"/>
+                    <text x="120" y="25" font-size="15" font-weight="bold" fill="#e74c3c">1st Tone (5-5)</text>
 
                     <!-- 2nd Tone (Green: 3-5) -->
-                    <line x1="30" y1="115" x2="300" y2="35" stroke="#27ae60" stroke-width="4" marker-end="url(#arrow-green)"/>
-                    <text x="140" y="82" font-size="14" font-weight="bold" fill="#27ae60" transform="rotate(-16 140 82)">第二声 (3-5)</text>
+                    <line x1="30" y1="115" x2="300" y2="35" stroke="#27ae60" stroke-width="4.5" marker-end="url(#arrow-green)"/>
+                    <text x="135" y="82" font-size="15" font-weight="bold" fill="#27ae60" transform="rotate(-16 135 82)">2nd Tone (3-5)</text>
 
                     <!-- 4th Tone (Purple: 5-1) -->
-                    <line x1="30" y1="35" x2="300" y2="195" stroke="#8e44ad" stroke-width="4" marker-end="url(#arrow-purple)"/>
-                    <text x="110" y="120" font-size="14" font-weight="bold" fill="#8e44ad" transform="rotate(30 110 120)">第四声 (5-1)</text>
+                    <line x1="30" y1="35" x2="300" y2="195" stroke="#8e44ad" stroke-width="4.5" marker-end="url(#arrow-purple)"/>
+                    <text x="110" y="120" font-size="15" font-weight="bold" fill="#8e44ad" transform="rotate(30 110 120)">4th Tone (5-1)</text>
 
                     <!-- 3rd Tone (Blue: 2-1-4) -->
-                    <polyline points="30,155 150,195 300,75" fill="none" stroke="#2980b9" stroke-width="4" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
-                    <text x="45" y="195" font-size="14" font-weight="bold" fill="#2980b9" transform="rotate(15 45 195)">第三声 (2-1-4)</text>
+                    <polyline points="30,155 140,195 300,75" fill="none" stroke="#2980b9" stroke-width="4.5" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+                    <text x="40" y="195" font-size="15" font-weight="bold" fill="#2980b9" transform="rotate(15 40 195)">3rd Tone (2-1-4)</text>
                 </svg>
             </div>
         </div>
@@ -429,17 +451,17 @@
                 <tr style="background-color: #fff9c4;">
                     <td><span class="kw-pinyin">j</span></td>
                     <td rowspan="3"><strong>Palatal (Front of tongue)</strong><br><em>*Smile while speaking</em></td>
-                    <td>BM - <strong>zirafah</strong> / BI - chicken</td>
+                    <td>BM - <strong>zi</strong>rafah / BI - chicken</td>
                     <td><span class="kw-pinyin">jī</span> (chicken)</td>
                 </tr>
                 <tr style="background-color: #fff9c4;">
                     <td><span class="kw-pinyin">q</span></td>
-                    <td>BM - <strong>cita</strong></td>
+                    <td>BM - <strong>ci</strong>ta</td>
                     <td><span class="kw-pinyin">qī</span> (seven)</td>
                 </tr>
                 <tr style="background-color: #fff9c4;">
                     <td><span class="kw-pinyin">x</span></td>
-                    <td>BM - <strong>siput</strong></td>
+                    <td>BM - <strong>si</strong>put</td>
                     <td><span class="kw-pinyin">xī</span> (west)</td>
                 </tr>
 
@@ -571,52 +593,182 @@
 
         <!-- Section 5: Rules -->
         <div id="rules" class="section">
-            <h1>5. Pinyin Spelling Rules (The Easy Way!)</h1>
+            <h1>5. Complete Pinyin Spelling Rules</h1>
             
             <div class="rule-card">
-                <h3>🛡️ Rule #1: The "Y & W" Bodyguards</h3>
-                <p>The vowels <strong>i</strong> and <strong>u</strong> are shy! If they are the first letter of a syllable, they need a bodyguard.</p>
+                <h3>🛡️ Rule #1: The "Y & W" Bodyguards (Zero Initial Syllables)</h3>
+                <p>The vowels <strong>i</strong>, <strong>u</strong>, and <strong>ü</strong> need bodyguards ("y" and "w") when forming standalone syllables:</p>
                 <ul>
-                    <li>If <strong>i</strong> is alone, add "y" in front: <div class="rule-formula">i &rarr; yi</div></li>
-                    <li>If <strong>i</strong> has friends, turn it into "y": <div class="rule-formula">ian &rarr; yan</div></li>
-                    <li>If <strong>u</strong> is alone, add "w" in front: <div class="rule-formula">u &rarr; wu</div></li>
-                    <li>If <strong>u</strong> has friends, turn it into "w": <div class="rule-formula">uan &rarr; wan</div></li>
+                    <li><strong>"i" syllables:</strong> Add "y" if "i" is main vowel (<span class="kw-pinyin">i &rarr; yi</span>, <span class="kw-pinyin">in &rarr; yin</span>). Replace "i" with "y" otherwise (<span class="kw-pinyin">ia &rarr; ya</span>, <span class="kw-pinyin">ian &rarr; yan</span>).</li>
+                    <li><strong>"u" syllables:</strong> Add "w" if "u" is main vowel (<span class="kw-pinyin">u &rarr; wu</span>). Replace "u" with "w" otherwise (<span class="kw-pinyin">ua &rarr; wa</span>, <span class="kw-pinyin">uan &rarr; wan</span>).</li>
+                    <li><strong>Abbreviation Notes:</strong> <span class="kw-pinyin">iou &rarr; -iu</span> (e.g. xiu), <span class="kw-pinyin">uei &rarr; -ui</span> (e.g. dui), <span class="kw-pinyin">uen &rarr; -un</span> (e.g. tun) when preceded by an initial.</li>
                 </ul>
             </div>
 
             <div class="rule-card">
-                <h3>🎩 Rule #2: The Magic Disappearing Dots</h3>
-                <p>The initials <strong>j, q, x</strong> are very strict! When the vowel <strong>ü</strong> meets them, it must take off its "hat" (the two dots) out of respect.</p>
+                <h3>🎩 Rule #2: Dropping Dots on "ü"</h3>
+                <p>The initials <strong>j, q, x</strong> are strict! When combined with <strong>ü</strong>, the two dots are <strong>OMITTED</strong>:</p>
                 <div class="rule-formula">
-                    j + ü = ju (Not jü) <br>
-                    q + ü = qu <br>
-                    x + ü = xu
+                    j + ü = ju &nbsp;|&nbsp; q + ü = qu &nbsp;|&nbsp; x + ü = xu
                 </div>
-                <p style="color: #c0392b; font-size: 0.9em;"><em>⚠️ Note: j, q, and x NEVER hang out with normal u, a, o, or e. If you see "ju", it is always pronounced as "jü"!</em></p>
-                <p style="font-size: 0.9em;"><em>Also, if <strong>ü</strong> has no initial consonant, add "y" and drop the dots (e.g., <strong>üan &rarr; yuan</strong>).</em></p>
+                <p style="font-size: 0.9em; color: #555;">
+                    • Standalone "ü" syllables: Add "y" and remove dots (<span class="kw-pinyin">ü &rarr; yu</span>, <span class="kw-pinyin">üan &rarr; yuan</span>, <span class="kw-pinyin">ün &rarr; yun</span>).<br>
+                    • <strong>Note:</strong> Dots remain unchanged when spelled with <strong>n</strong> and <strong>l</strong> because they can combine with both "u" and "ü" (e.g., <span class="kw-pinyin">lǚ</span> vs <span class="kw-pinyin">lǔ</span>).
+                </p>
             </div>
 
             <div class="rule-card">
-                <h3>👑 Rule #3: Who gets the Tone Crown?</h3>
-                <p>When there are multiple vowels, who wears the Tone Crown? They line up by mouth size:</p>
-                <div class="rule-formula">a > o > e > i > u > ü</div>
-                <p>The vowel that opens the mouth the widest gets the mark! (e.g., in <strong>bāi</strong>, "a" gets it; in <strong>guó</strong>, "o" gets it). <br>
-                <strong>Except:</strong> For the twins <strong>iu</strong> and <strong>ui</strong>, the crown always goes to the <em>LAST</em> vowel (e.g., <strong>tuī</strong>, <strong>qiú</strong>).</p>
+                <h3>👑 Rule #3: Complete Tone Mark Placement Rules</h3>
+                <p>Tone marks MUST be placed on the main vowel according to these 6 complete rules:</p>
+                <ol style="line-height: 1.8;">
+                    <li><strong>Single Vowel:</strong> Mark placed directly above it (e.g., <span class="kw-pinyin">mā</span>).</li>
+                    <li><strong>Vowel "i":</strong> Omit the dot above "i" when placing a tone mark (e.g., <span class="kw-pinyin">yín</span>).</li>
+                    <li><strong>Multiple Vowels:</strong> Follow priority order by mouth size: <strong>a &rarr; o &rarr; e &rarr; i &rarr; u &rarr; ü</strong> (e.g., <span class="kw-pinyin">bāi</span>, <span class="kw-pinyin">guó</span>).</li>
+                    <li><strong>Special Finals "iu" & "ui":</strong> Mark above the <em>LAST</em> vowel letter (e.g., <span class="kw-pinyin">tuī</span>, <span class="kw-pinyin">qiú</span>).</li>
+                    <li><strong>Three Vowels:</strong> Mark placed above the <em>MIDDLE</em> vowel (e.g., <span class="kw-pinyin">guǎi</span>).</li>
+                    <li><strong>Neutral Tone Syllable:</strong> No tone mark above neutral syllables (e.g., <span class="kw-pinyin">bàba</span>).
+                        <br><em>Used in: Common words (māma, bàba), grammatical particles (de, le, ma), repeated words (kànkan), compound words (péngyou).</em>
+                    </li>
+                </ol>
             </div>
 
             <div class="rule-card">
-                <h3>✂️ Rule #4: The Syllable Slicer (')</h3>
-                <p>Sometimes, syllables crash into each other. We use an apostrophe <strong>(')</strong> to slice them apart so we don't read it wrong.</p>
+                <h3>✂️ Rule #4: The Dividing Mark (')</h3>
+                <p>When a syllable beginning with <strong>a, o, e</strong> follows another syllable, a dividing mark <strong>(')</strong> is put in between to clarify syllable boundaries and avoid confusion.</p>
                 <div class="rule-formula">
-                    Tiān + ān + mén = Tiān'ānmén (Not Tiananmen) <br>
+                    Tiān + ān + mén = Tiān'ānmén (separates "tian" and "an") <br>
                     shí + èr = shí'èr
                 </div>
             </div>
+
+            <div class="rule-card">
+                <h3>✍️ Rule #5: Continuous Writing & Capitalization (Textbook Rule 6)</h3>
+                <p>Follow these standard writing conventions in Mandarin Pinyin:</p>
+                <ul style="line-height: 1.8;">
+                    <li><strong>Same Word:</strong> Syllables forming the same word should be written together (e.g., <span class="kw-pinyin">bà ba &rarr; bàba</span>).</li>
+                    <li><strong>Sentence Formatting:</strong> Separate words are written with spaces, and the first letter of a sentence is capitalized (e.g., <span class="kw-pinyin">Wǒ bàba māma hěn máng.</span>).</li>
+                    <li><strong>Proper Nouns:</strong> Capitalize the first letter of proper nouns and specific phrases (e.g., <span class="kw-pinyin">Mǎláixīyà</span>, <span class="kw-pinyin">Lù Yǔpíng</span>, <span class="kw-pinyin">Hànyǔ</span>).</li>
+                </ul>
+            </div>
         </div>
 
-        <!-- Section 6: Resources -->
+        <!-- Section 6: In-Class Exercises -->
+        <div id="exercises" class="section">
+            <h1>6. In-Class Exercises (Textbook Practice)</h1>
+            
+            <!-- Exercise A -->
+            <div class="exercise-card">
+                <h3>Exercise A: Identify Initials, Finals & Complete Syllables</h3>
+                <p><strong>1. Identify the Initials and Finals:</strong> Identify the initial consonant and final vowel for each syllable below:</p>
+                <div class="rule-formula" style="letter-spacing: 3px;">
+                    bāo &nbsp;|&nbsp; shuǐ &nbsp;|&nbsp; míng &nbsp;|&nbsp; tiān &nbsp;|&nbsp; chòu &nbsp;|&nbsp; zhāng &nbsp;|&nbsp; xiào
+                </div>
+                
+                <p style="margin-top: 20px;"><strong>2. Listening Practice:</strong> Fill in the missing initial or final based on teacher's dictation:</p>
+                <table style="font-size: 0.9em;">
+                    <tr><th>#</th><th>Character</th><th>Pinyin Frame</th><th>#</th><th>Character</th><th>Pinyin Frame</th></tr>
+                    <tr><td>1</td><td>中</td><td>zh_ng</td><td>6</td><td>学</td><td>_ue</td></tr>
+                    <tr><td>2</td><td>见</td><td>j_</td><td>7</td><td>日</td><td>_</td></tr>
+                    <tr><td>3</td><td>好</td><td>h_</td><td>8</td><td>去</td><td>_u</td></tr>
+                    <tr><td>4</td><td>都</td><td>d_</td><td>9</td><td>拍</td><td>_ai</td></tr>
+                    <tr><td>5</td><td>想</td><td>x_</td><td>10</td><td>也</td><td>_e</td></tr>
+                </table>
+            </div>
+
+            <!-- Exercise B -->
+            <div class="exercise-card">
+                <h3>Exercise B: Add the Correct Tones</h3>
+                <p>Place the correct tone marks over the appropriate vowel according to tone rules:</p>
+                <table style="font-size: 0.9em;">
+                    <tr><td>1. ma (1st tone)</td><td>2. shi (2nd tone)</td><td>3. lü (3rd tone)</td><td>4. cuo (4th tone)</td></tr>
+                    <tr><td>5. niu (1st tone)</td><td>6. jie (2nd tone)</td><td>7. tiao (3rd tone)</td><td>8. shuai (4th tone)</td></tr>
+                    <tr><td>9. huang (1st tone)</td><td>10. xue (2nd tone)</td><td>11. zou (3rd tone)</td><td>12. nian (4th tone)</td></tr>
+                </table>
+            </div>
+
+            <!-- Exercise C -->
+            <div class="exercise-card">
+                <h3>Exercise C: Tone Discrimination</h3>
+                <p><strong>1. Listen & Select (Choose A, B, C, or D):</strong></p>
+                <ol style="line-height: 1.8;">
+                    <li>Teacher dictation: (前) &rarr; A. qiān &nbsp; B. qián &nbsp; C. qiǎn &nbsp; D. qiàn</li>
+                    <li>Teacher dictation: (脆) &rarr; A. cuī &nbsp; B. cuí &nbsp; C. cuǐ &nbsp; D. cuì</li>
+                    <li>Teacher dictation: (者) &rarr; A. zhē &nbsp; B. zhé &nbsp; C. zhě &nbsp; D. zhè</li>
+                    <li>Teacher dictation: (收) &rarr; A. shōu &nbsp; B. shóu &nbsp; C. shǒu &nbsp; D. shòu</li>
+                    <li>Teacher dictation: (聊) &rarr; A. liāo &nbsp; B. liáo &nbsp; C. liǎo &nbsp; D. liào</li>
+                    <li>Teacher dictation: (吃) &rarr; A. chī &nbsp; B. chí &nbsp; C. chǐ &nbsp; D. chì</li>
+                </ol>
+
+                <p style="margin-top:20px;"><strong>2. Write Tone Marks:</strong> Write the correct tone mark heard:</p>
+                <p class="rule-formula">
+                    shu (书) | zhi (纸) | yao (要) | suan (酸) | que (确) | ge (哥) <br>
+                    ren (人) | sui (岁) | wan (晚) | guo (国) | nü (女) | cha (茶)
+                </p>
+            </div>
+
+            <!-- Exercise D -->
+            <div class="exercise-card">
+                <h3>Exercise D: Sound Discrimination</h3>
+                <p>Listen and identify the correct Pinyin option you hear:</p>
+                <table style="font-size: 0.9em;">
+                    <tr><td>1. A. zhuō vs B. chuō (桌)</td><td>6. A. dīng vs B. tīng (听)</td></tr>
+                    <tr><td>2. A. ròu vs B. ruò (若)</td><td>7. A. jiāo vs B. qiāo (敲)</td></tr>
+                    <tr><td>3. A. bǐ vs B. pǐ (笔)</td><td>8. A. yuè vs B. yè (叶)</td></tr>
+                    <tr><td>4. A. nǔ vs B. nǚ (女)</td><td>9. A. xī vs B. sī (西)</td></tr>
+                    <tr><td>5. A. kǒu vs B. gǒu (口)</td><td>10. A. jiǔ vs B. xiǔ (九)</td></tr>
+                </table>
+            </div>
+
+            <!-- Exercise E -->
+            <div class="exercise-card">
+                <h3>Exercise E: Rewrite with Correct Pinyin Formatting</h3>
+                <p>Correct tone numbers into tone marks, apply capitalization, and fix spacing/word boundary formatting:</p>
+                <ol style="line-height: 2;">
+                    <li>lin2 na4 shi4 wo3 de peng2you.</li>
+                    <li>ta1 jiao4 wang2 xiao3yun2.</li>
+                    <li>chen2 lao3shi1 hen3 mang2.</li>
+                    <li>wo3men xi3huan xue2xi2 han4yu3.</li>
+                    <li>ni3men dou1 bu2shi4 zhong1guo2 ren2.</li>
+                </ol>
+            </div>
+
+            <!-- Collapsible Teacher Answer Key -->
+            <details class="answer-key">
+                <summary>🔑 Teacher Reference Answer Key (Click to Reveal)</summary>
+                <div style="margin-top: 15px; font-size: 0.95em; line-height: 1.8;">
+                    <h4>Exercise A Answers:</h4>
+                    <ul>
+                        <li><strong>Initials/Finals:</strong> b-ao, sh-ui, m-ing, t-ian, ch-ou, zh-ang, x-iao.</li>
+                        <li><strong>Missing Fill-in:</strong> 1. zhong, 2. jian, 3. hao, 4. dou, 5. xiang, 6. xue, 7. ri, 8. qu, 9. pai, 10. ye.</li>
+                    </ul>
+
+                    <h4>Exercise B Answers:</h4>
+                    <p>mā, shí, lǚ, cuò, niū, jié, tiǎo, shuài, huāng, xué, zǒu, niàn</p>
+
+                    <h4>Exercise C Answers:</h4>
+                    <ul>
+                        <li><strong>1. MCQs:</strong> 1. B (qián), 2. D (cuì), 3. C (zhě), 4. A (shōu), 5. B (liáo), 6. A (chī)</li>
+                        <li><strong>2. Tones:</strong> shū (1), zhǐ (3), yào (4), suān (1), què (4), gē (1), rén (2), suì (4), wǎn (3), guó (2), nǚ (3), chá (2)</li>
+                    </ul>
+
+                    <h4>Exercise D Answers:</h4>
+                    <p>1. A (zhuō), 2. A (ròu), 3. A (bǐ), 4. B (nǚ), 5. A (kǒu), 6. B (tīng), 7. B (qiāo), 8. B (yè), 9. A (xī), 10. A (jiǔ)</p>
+
+                    <h4>Exercise E Answers:</h4>
+                    <ol>
+                        <li>Lín Nà shì wǒ de péngyou.</li>
+                        <li>Tā jiào Wáng Xiǎoyún.</li>
+                        <li>Chén lǎoshī hěn máng.</li>
+                        <li>Wǒmen xǐhuan xuéxí Hànyǔ.</li>
+                        <li>Nǐmen dōu búshì Zhōngguó rén.</li>
+                    </ol>
+                </div>
+            </details>
+        </div>
+
+        <!-- Section 7: Homework & Review -->
         <div id="resources" class="section">
-            <h1>6. Post-Class Review & Homework</h1>
+            <h1>7. Post-Class Review & Homework</h1>
             
             <h3 style="color: #27ae60;">📝 Homework Assignments</h3>
             <p>Please complete the following exercises before our next class:</p>
