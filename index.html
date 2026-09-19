@@ -163,19 +163,19 @@
             border: 1px solid #ffe58f;
         }
 
-        /* Rule Cards & Exercise Cards */
+        /* Rule Cards & Visual Styles */
         .rule-card, .exercise-card {
             background: #ffffff;
             border: 1px solid #e0e0e0;
             border-radius: 8px;
             padding: 20px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            border-top: 4px solid var(--kw-rule);
+            margin-bottom: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-top: 5px solid var(--kw-rule);
         }
         
         .exercise-card {
-            border-top: 4px solid var(--kw-initial);
+            border-top: 5px solid var(--kw-initial);
         }
 
         .rule-card h3, .exercise-card h3 {
@@ -183,16 +183,82 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            color: #2c3e50;
         }
 
-        .rule-formula {
-            background: #f1f2f6;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
+        /* Visual Components for Rules */
+        .visual-flow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 12px 0;
+        }
+
+        .flow-item {
+            background: #f8f9fa;
+            border: 1px dashed #cbd5e1;
+            padding: 8px 14px;
+            border-radius: 20px;
             font-family: monospace;
-            font-size: 1.1em;
-            margin: 10px 0;
+            font-size: 1.05em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .flow-arrow {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .pill-tag {
+            background: #e2e8f0;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            color: #475569;
+            font-weight: bold;
+        }
+
+        /* Ladder/Hierarchy Bar for Tone Rules */
+        .ladder-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin: 15px 0;
+            box-shadow: 0 4px 6px rgba(255, 65, 108, 0.2);
+        }
+
+        .ladder-step {
+            background: rgba(255, 255, 255, 0.25);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .rule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 12px;
+            margin: 15px 0;
+        }
+
+        .grid-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px 15px;
+            border-left: 4px solid var(--kw-tone);
         }
 
         /* Answer Key Collapsible */
@@ -530,14 +596,38 @@
                     <th>Suku Kata / English Hack</th>
                     <th>Example</th>
                 </tr>
-                <tr><td><span class="kw-pinyin">a</span></td><td>Big mouth</td><td>BM - <strong>a</strong>bang | BI - f<strong>a</strong>ther</td><td><span class="kw-pinyin">bàba</span></td></tr>
-                <tr><td><span class="kw-pinyin">o</span></td><td>Big mouth</td><td>BM - <strong>o</strong>tak | BI - l<strong>aw</strong></td><td><span class="kw-pinyin">wǒ</span></td></tr>
-                <tr><td><span class="kw-pinyin">e</span></td><td>Big mouth</td><td>BM - <strong>e</strong>mak | BI - ag<strong>o</strong></td><td><span class="kw-pinyin">gēge</span></td></tr>
-                <tr><td><span class="kw-pinyin">i</span></td><td>Smile sound</td><td>BM - <strong>i</strong>kan | BI - s<strong>ee</strong></td><td><span class="kw-pinyin">bǐ</span></td></tr>
-                <tr><td><span class="kw-pinyin">u</span></td><td>Round lip</td><td>BM - <strong>u</strong>lang | BI - m<strong>oo</strong>d</td><td><span class="kw-pinyin">wǔ</span></td></tr>
-                <tr><td><span class="kw-pinyin">ü</span></td><td>Tight round lip</td><td>BM - <strong>yo</strong>yo | BI - sal<strong>u</strong>t</td><td><span class="kw-pinyin">nǚ</span></td></tr>
-                <tr style="background-color: #f1f8ff;"><td><span class="kw-pinyin">er</span></td><td>Special</td><td>BM - <strong>er</strong>ti | BI - lett<strong>er</strong></td><td><span class="kw-pinyin">shí'èr</span></td></tr>
+                <tr><td><span class="kw-pinyin">a</span></td><td>Big mouth</td><td>BM - <strong>a</strong>bang | BI - f<strong>a</strong>ther</td><td><span class="kw-pinyin">bàba</span> (dad)</td></tr>
+                <tr><td><span class="kw-pinyin">o</span></td><td>Big mouth</td><td>BM - <strong>o</strong>tak | BI - l<strong>aw</strong></td><td><span class="kw-pinyin">wǒ</span> (I / me)</td></tr>
+                <tr><td><span class="kw-pinyin">e</span></td><td>Big mouth</td><td>BM - <strong>e</strong>mak | BI - ag<strong>o</strong></td><td><span class="kw-pinyin">gēge</span> (elder brother)</td></tr>
+                <tr><td><span class="kw-pinyin">i</span></td><td>Smile sound</td><td>BM - <strong>i</strong>kan | BI - s<strong>ee</strong></td><td><span class="kw-pinyin">bǐ</span> (pen)</td></tr>
+                <tr><td><span class="kw-pinyin">u</span></td><td>Round lip</td><td>BM - <strong>u</strong>lang | BI - m<strong>oo</strong>d</td><td><span class="kw-pinyin">wǔ</span> (five)</td></tr>
+                <tr><td><span class="kw-pinyin">ü</span></td><td>Tight round lip</td><td>BM - <strong>yo</strong>yo | BI - sal<strong>u</strong>t</td><td><span class="kw-pinyin">nǚ</span> (female)</td></tr>
+                <tr style="background-color: #f1f8ff;"><td><span class="kw-pinyin">er</span></td><td>Special</td><td>BM - <strong>er</strong>ti | BI - lett<strong>er</strong></td><td><span class="kw-pinyin">shí'èr</span> (twelve)</td></tr>
             </table>
+
+            <!-- Simple Finals + 5 Tones Practice Table -->
+            <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                <h4 style="margin-top: 0; color: #166534;">🗣️ Master Practice: Simple Finals + All 5 Tones</h4>
+                <p style="font-size: 0.9em; color: #15803d;">Practice reading each simple final aloud across all five tone pitches:</p>
+                
+                <table style="background: white; font-size: 1.05em; text-align: center;">
+                    <tr style="background: #e2e8f0;">
+                        <th>Final</th>
+                        <th>1st Tone (5-5)</th>
+                        <th>2nd Tone (3-5)</th>
+                        <th>3rd Tone (2-1-4)</th>
+                        <th>4th Tone (5-1)</th>
+                        <th>Neutral Tone</th>
+                    </tr>
+                    <tr><td><strong>a</strong></td><td>ā</td><td>á</td><td>ǎ</td><td>à</td><td>a</td></tr>
+                    <tr><td><strong>o</strong></td><td>ō</td><td>ó</td><td>ǒ</td><td>ò</td><td>o</td></tr>
+                    <tr><td><strong>e</strong></td><td>ē</td><td>é</td><td>ě</td><td>è</td><td>e</td></tr>
+                    <tr><td><strong>i</strong></td><td>ī</td><td>í</td><td>ǐ</td><td>ì</td><td>i</td></tr>
+                    <tr><td><strong>u</strong></td><td>ū</td><td>ú</td><td>ǔ</td><td>ù</td><td>u</td></tr>
+                    <tr><td><strong>ü</strong></td><td>ǖ</td><td>ǘ</td><td>ǚ</td><td>ǜ</td><td>ü</td></tr>
+                    <tr style="background-color: #f8fafc;"><td><strong>er</strong></td><td>ēr</td><td>ér</td><td>ěr</td><td>èr</td><td>er</td></tr>
+                </table>
+            </div>
 
             <h3>B. Compound Finals (13)</h3>
             <table>
@@ -595,66 +685,184 @@
         <div id="rules" class="section">
             <h1>5. Complete Pinyin Spelling Rules</h1>
             
+            <!-- Rule 1: Bodyguards -->
             <div class="rule-card">
                 <h3>🛡️ Rule #1: The "Y & W" Bodyguards (Zero Initial Syllables)</h3>
-                <p>The vowels <strong>i</strong>, <strong>u</strong>, and <strong>ü</strong> need bodyguards ("y" and "w") when forming standalone syllables:</p>
-                <ul>
-                    <li><strong>"i" syllables:</strong> Add "y" if "i" is main vowel (<span class="kw-pinyin">i &rarr; yi</span>, <span class="kw-pinyin">in &rarr; yin</span>). Replace "i" with "y" otherwise (<span class="kw-pinyin">ia &rarr; ya</span>, <span class="kw-pinyin">ian &rarr; yan</span>).</li>
-                    <li><strong>"u" syllables:</strong> Add "w" if "u" is main vowel (<span class="kw-pinyin">u &rarr; wu</span>). Replace "u" with "w" otherwise (<span class="kw-pinyin">ua &rarr; wa</span>, <span class="kw-pinyin">uan &rarr; wan</span>).</li>
-                    <li><strong>Abbreviation Notes:</strong> <span class="kw-pinyin">iou &rarr; -iu</span> (e.g. xiu), <span class="kw-pinyin">uei &rarr; -ui</span> (e.g. dui), <span class="kw-pinyin">uen &rarr; -un</span> (e.g. tun) when preceded by an initial.</li>
-                </ul>
+                <p>The vowels <strong>i</strong>, <strong>u</strong>, and <strong>ü</strong> are shy! When forming standalone syllables without a consonant initial, they need a bodyguard ("y" or "w"):</p>
+                
+                <div class="visual-flow">
+                    <div class="flow-item"><span class="pill-tag">i Alone</span> i <span class="flow-arrow">&rarr;</span> <strong>yi</strong></div>
+                    <div class="flow-item">in <span class="flow-arrow">&rarr;</span> <strong>yin</strong></div>
+                    <div class="flow-item">ing <span class="flow-arrow">&rarr;</span> <strong>ying</strong></div>
+                    <div class="flow-item"><span class="pill-tag">i Has Friends</span> ia <span class="flow-arrow">&rarr;</span> <strong>ya</strong></div>
+                    <div class="flow-item">ian <span class="flow-arrow">&rarr;</span> <strong>yan</strong></div>
+                    <div class="flow-item">iou <span class="flow-arrow">&rarr;</span> <strong>you</strong></div>
+                </div>
+
+                <div class="visual-flow">
+                    <div class="flow-item"><span class="pill-tag">u Alone</span> u <span class="flow-arrow">&rarr;</span> <strong>wu</strong></div>
+                    <div class="flow-item"><span class="pill-tag">u Has Friends</span> ua <span class="flow-arrow">&rarr;</span> <strong>wa</strong></div>
+                    <div class="flow-item">uan <span class="flow-arrow">&rarr;</span> <strong>wan</strong></div>
+                    <div class="flow-item">uei <span class="flow-arrow">&rarr;</span> <strong>wei</strong></div>
+                </div>
+
+                <div class="visual-flow">
+                    <div class="flow-item"><span class="pill-tag">ü Alone or Friends</span> ü <span class="flow-arrow">&rarr;</span> <strong>yu</strong></div>
+                    <div class="flow-item">üe <span class="flow-arrow">&rarr;</span> <strong>yue</strong></div>
+                    <div class="flow-item">üan <span class="flow-arrow">&rarr;</span> <strong>yuan</strong></div>
+                    <div class="flow-item">ün <span class="flow-arrow">&rarr;</span> <strong>yun</strong></div>
+                </div>
+
+                <div style="background: #f1f5f9; padding: 10px 15px; border-radius: 6px; margin-top: 10px; font-size: 0.9em;">
+                    ⚡ <strong>Shrinking Finals Formula:</strong> When preceded by an initial consonant, three finals drop their middle vowel to save space:
+                    <br><code>iou &rarr; -iu</code> (e.g. x + iou = xiu) &nbsp;|&nbsp; <code>uei &rarr; -ui</code> (e.g. d + uei = dui) &nbsp;|&nbsp; <code>uen &rarr; -un</code> (e.g. t + uen = tun)
+                </div>
             </div>
 
+            <!-- Rule 2: Dropping Dots Textbook Table -->
             <div class="rule-card">
                 <h3>🎩 Rule #2: Dropping Dots on "ü"</h3>
-                <p>The initials <strong>j, q, x</strong> are strict! When combined with <strong>ü</strong>, the two dots are <strong>OMITTED</strong>:</p>
-                <div class="rule-formula">
-                    j + ü = ju &nbsp;|&nbsp; q + ü = qu &nbsp;|&nbsp; x + ü = xu
+                <p>When the vowel <strong>ü</strong> combines with <strong>j, q, x</strong>, the two dots over it are <strong>OMITTED</strong>:</p>
+
+                <table style="text-align: center; font-size: 1em;">
+                    <tr style="background-color: #f1f5f9;">
+                        <th>Initials</th>
+                        <th>ü</th>
+                        <th>üe</th>
+                        <th>üan</th>
+                        <th>ün</th>
+                    </tr>
+                    <tr>
+                        <td><strong>j</strong></td>
+                        <td>ju</td>
+                        <td>jue</td>
+                        <td>juan</td>
+                        <td>jun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>q</strong></td>
+                        <td>qu</td>
+                        <td>que</td>
+                        <td>quan</td>
+                        <td>qun</td>
+                    </tr>
+                    <tr>
+                        <td><strong>x</strong></td>
+                        <td>xu</td>
+                        <td>xue</td>
+                        <td>xuan</td>
+                        <td>xun</td>
+                    </tr>
+                </table>
+
+                <div style="background: #fff1f2; border-left: 4px solid #e11d48; padding: 10px 15px; border-radius: 4px; font-size: 0.9em; margin-top: 10px;">
+                    ⚠️ <strong>Crucial Notes:</strong><br>
+                    • <strong>j, q, x</strong> NEVER combine directly with simple vowels <strong>a, o, e, u</strong>.<br>
+                    • Two dots of "ü" <strong>REMAIN UNCHANGED</strong> when spelled with initials <strong>n</strong> and <strong>l</strong> because they can combine with both "ü" and "u" (e.g., l + ü = lǚ vs l + u = lǔ).
                 </div>
-                <p style="font-size: 0.9em; color: #555;">
-                    • Standalone "ü" syllables: Add "y" and remove dots (<span class="kw-pinyin">ü &rarr; yu</span>, <span class="kw-pinyin">üan &rarr; yuan</span>, <span class="kw-pinyin">ün &rarr; yun</span>).<br>
-                    • <strong>Note:</strong> Dots remain unchanged when spelled with <strong>n</strong> and <strong>l</strong> because they can combine with both "u" and "ü" (e.g., <span class="kw-pinyin">lǚ</span> vs <span class="kw-pinyin">lǔ</span>).
-                </p>
             </div>
 
+            <!-- Rule 3: Tone Crown Ladder -->
             <div class="rule-card">
-                <h3>👑 Rule #3: Complete Tone Mark Placement Rules</h3>
-                <p>Tone marks MUST be placed on the main vowel according to these 6 complete rules:</p>
-                <ol style="line-height: 1.8;">
-                    <li><strong>Single Vowel:</strong> Mark placed directly above it (e.g., <span class="kw-pinyin">mā</span>).</li>
-                    <li><strong>Vowel "i":</strong> Omit the dot above "i" when placing a tone mark (e.g., <span class="kw-pinyin">yín</span>).</li>
-                    <li><strong>Multiple Vowels:</strong> Follow priority order by mouth size: <strong>a &rarr; o &rarr; e &rarr; i &rarr; u &rarr; ü</strong> (e.g., <span class="kw-pinyin">bāi</span>, <span class="kw-pinyin">guó</span>).</li>
-                    <li><strong>Special Finals "iu" & "ui":</strong> Mark above the <em>LAST</em> vowel letter (e.g., <span class="kw-pinyin">tuī</span>, <span class="kw-pinyin">qiú</span>).</li>
-                    <li><strong>Three Vowels:</strong> Mark placed above the <em>MIDDLE</em> vowel (e.g., <span class="kw-pinyin">guǎi</span>).</li>
-                    <li><strong>Neutral Tone Syllable:</strong> No tone mark above neutral syllables (e.g., <span class="kw-pinyin">bàba</span>).
-                        <br><em>Used in: Common words (māma, bàba), grammatical particles (de, le, ma), repeated words (kànkan), compound words (péngyou).</em>
-                    </li>
-                </ol>
-            </div>
+                <h3>👑 Rule #3: Who Gets the Tone Crown? (6 Complete Rules)</h3>
+                <p>When placing tone marks, the vowel with the biggest mouth opens the widest to wear the crown!</p>
+                
+                <div class="ladder-bar">
+                    <div class="ladder-step">a</div> &gt;
+                    <div class="ladder-step">o</div> &gt;
+                    <div class="ladder-step">e</div> &gt;
+                    <div class="ladder-step">i</div> &gt;
+                    <div class="ladder-step">u</div> &gt;
+                    <div class="ladder-step">ü</div>
+                </div>
 
-            <div class="rule-card">
-                <h3>✂️ Rule #4: The Dividing Mark (')</h3>
-                <p>When a syllable beginning with <strong>a, o, e</strong> follows another syllable, a dividing mark <strong>(')</strong> is put in between to clarify syllable boundaries and avoid confusion.</p>
-                <div class="rule-formula">
-                    Tiān + ān + mén = Tiān'ānmén (separates "tian" and "an") <br>
-                    shí + èr = shí'èr
+                <div class="rule-grid">
+                    <div class="grid-card">
+                        <strong>1. Single Vowel</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">Mark directly above it (e.g., <span class="kw-pinyin">mā</span>).</p>
+                    </div>
+                    <div class="grid-card">
+                        <strong>2. Two Vowels</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">Follow order a &gt; o &gt; e &gt; i &gt; u &gt; ü (e.g., <span class="kw-pinyin">bāi</span>, <span class="kw-pinyin">guó</span>).</p>
+                    </div>
+                    <div class="grid-card">
+                        <strong>3. Twin Twins (iu & ui)</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">Crown goes on the <em>LAST</em> vowel (<span class="kw-pinyin">tuī</span>, <span class="kw-pinyin">qiú</span>).</p>
+                    </div>
+                    <div class="grid-card">
+                        <strong>4. Three Vowels</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">Crown goes on the <em>MIDDLE</em> vowel (<span class="kw-pinyin">guǎi</span>).</p>
+                    </div>
+                    <div class="grid-card">
+                        <strong>5. Dot-Free "i"</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">Omit dot above "i" when crowned (e.g., <span class="kw-pinyin">yín</span>).</p>
+                    </div>
+                    <div class="grid-card">
+                        <strong>6. Neutral Tone</strong>
+                        <p style="margin: 5px 0 0; font-size: 0.9em;">No tone mark above neutral syllables (e.g., <span class="kw-pinyin">bàba</span>).</p>
+                    </div>
+                </div>
+
+                <div style="background: #f8fafc; border-left: 4px solid #64748b; padding: 10px 15px; border-radius: 4px; font-size: 0.9em;">
+                    ☁️ <strong>Neutral Tone Usage:</strong> Common family words (māma, bàba), grammatical particles (de, le, ma), repeated verbs (kànkan), compound words (péngyou).
                 </div>
             </div>
 
+            <!-- Rule 4: Syllable Slicer -->
             <div class="rule-card">
-                <h3>✍️ Rule #5: Continuous Writing & Capitalization (Textbook Rule 6)</h3>
-                <p>Follow these standard writing conventions in Mandarin Pinyin:</p>
-                <ul style="line-height: 1.8;">
-                    <li><strong>Same Word:</strong> Syllables forming the same word should be written together (e.g., <span class="kw-pinyin">bà ba &rarr; bàba</span>).</li>
-                    <li><strong>Sentence Formatting:</strong> Separate words are written with spaces, and the first letter of a sentence is capitalized (e.g., <span class="kw-pinyin">Wǒ bàba māma hěn máng.</span>).</li>
-                    <li><strong>Proper Nouns:</strong> Capitalize the first letter of proper nouns and specific phrases (e.g., <span class="kw-pinyin">Mǎláixīyà</span>, <span class="kw-pinyin">Lù Yǔpíng</span>, <span class="kw-pinyin">Hànyǔ</span>).</li>
-                </ul>
+                <h3>✂️ Rule #4: The Syllable Slicer (')</h3>
+                <p>When a syllable starting with <strong>a, o, e</strong> follows another syllable, use an apostrophe <strong>(')</strong> in between to avoid confusion over syllable boundaries!</p>
+                
+                <div style="display: flex; align-items: center; justify-content: center; gap: 15px; background: #f1f5f9; padding: 12px; border-radius: 8px; font-family: monospace; font-size: 1.1em; flex-wrap: wrap;">
+                    <div><span style="color:#dc2626;">Tiānānmén</span> (Wrong: Read as "Tiā - nān - mén")</div>
+                    <span style="color:#e74c3c; font-weight:bold;">&rarr;</span> 
+                    <div style="background: #fef08a; padding: 2px 8px; border-radius: 4px; border: 1px dashed #ca8a04;"><strong>Tiān'ānmén</strong> (Correct: Clear "Tian" & "an")</div>
+                </div>
+            </div>
+
+            <!-- Rule 5: Word Glue, Caps & Syllable Counting -->
+            <div class="rule-card">
+                <h3>✍️ Rule #5: Word Glue & Big Letters</h3>
+
+                <!-- Syllable Counting Box -->
+                <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px 15px; border-radius: 6px; margin-bottom: 15px;">
+                    <strong style="color: #166534;">📐 How to Count Chinese Syllables:</strong>
+                    <p style="margin: 5px 0 0; font-size: 0.9em; color: #15803d;">
+                        In Mandarin, <strong>1 Chinese Character = 1 Spoken Syllable = 1 Pinyin Unit</strong>. Every single syllable you speak counts as 1 syllable!
+                    </p>
+                    <div style="font-family: monospace; font-size: 0.95em; background: white; padding: 8px; border-radius: 4px; margin-top: 8px; text-align: center;">
+                        Wǒ(1) bà(2)ba(3) mā(4)ma(5) hěn(6) máng(7). &rarr; <strong>7 Syllables total!</strong>
+                    </div>
+                </div>
+
+                <table style="font-size: 0.9em;">
+                    <tr>
+                        <th style="width: 30%;">Rule Type</th>
+                        <th style="width: 35%;">❌ Wrong Format</th>
+                        <th style="width: 35%;">✅ Correct Format</th>
+                    </tr>
+                    <tr>
+                        <td><strong>Same Word Glue</strong></td>
+                        <td><span style="color:#dc2626;">bà ba</span> (separated)</td>
+                        <td><span style="color:#16a34a; font-weight:bold;">bàba</span> (written together)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sentence Spacing</strong></td>
+                        <td><span style="color:#dc2626;">wǒ bàba māma hěn máng.</span></td>
+                        <td><span style="color:#16a34a; font-weight:bold;">Wǒ bàba māma hěn máng.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Proper Nouns</strong></td>
+                        <td><span style="color:#dc2626;">mǎláixīyà, lù yǔpíng</span></td>
+                        <td><span style="color:#16a34a; font-weight:bold;">Mǎláixīyà, Lù Yǔpíng, Hànyǔ</span></td>
+                    </tr>
+                </table>
             </div>
         </div>
 
         <!-- Section 6: In-Class Exercises -->
         <div id="exercises" class="section">
-            <h1>6. In-Class Exercises (Textbook Practice)</h1>
+            <h1>6. In-Class Exercises (KuaiLe Xue HanYu Practice)</h1>
             
             <!-- Exercise A -->
             <div class="exercise-card">
@@ -668,7 +876,7 @@
                 <table style="font-size: 0.9em;">
                     <tr><th>#</th><th>Character</th><th>Pinyin Frame</th><th>#</th><th>Character</th><th>Pinyin Frame</th></tr>
                     <tr><td>1</td><td>中</td><td>zh_ng</td><td>6</td><td>学</td><td>_ue</td></tr>
-                    <tr><td>2</td><td>见</td><td>j_</td><td>7</td><td>日</td><td>_</td></tr>
+                    <tr><td>2</td><td>见</td><td>j_</td><td>7</td><td>日</td><td>_i</td></tr>
                     <tr><td>3</td><td>好</td><td>h_</td><td>8</td><td>去</td><td>_u</td></tr>
                     <tr><td>4</td><td>都</td><td>d_</td><td>9</td><td>拍</td><td>_ai</td></tr>
                     <tr><td>5</td><td>想</td><td>x_</td><td>10</td><td>也</td><td>_e</td></tr>
@@ -739,7 +947,7 @@
                     <h4>Exercise A Answers:</h4>
                     <ul>
                         <li><strong>Initials/Finals:</strong> b-ao, sh-ui, m-ing, t-ian, ch-ou, zh-ang, x-iao.</li>
-                        <li><strong>Missing Fill-in:</strong> 1. zhong, 2. jian, 3. hao, 4. dou, 5. xiang, 6. xue, 7. ri, 8. qu, 9. pai, 10. ye.</li>
+                        <li><strong>Missing Fill-in:</strong> 1. zhong, 2. jian, 3. hao, 4. dou, 5. xiang, 6. xue, 7. ri (r-i), 8. qu, 9. pai, 10. ye.</li>
                     </ul>
 
                     <h4>Exercise B Answers:</h4>
