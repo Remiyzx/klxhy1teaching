@@ -3,302 +3,536 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teacher's Lesson Plan: Lesson 1 - The Phonetics of Chinese</title>
+    <title>Lesson 1 - The Phonetics of Chinese</title>
     <style>
         :root {
-            --primary-color: #d32f2f;
-            --secondary-color: #ff9800;
-            --bg-color: #fff8f0;
+            --primary: #d32f2f;
+            --sidebar-bg: #2c3e50;
+            --sidebar-hover: #34495e;
+            --sidebar-active: #e74c3c;
+            --bg-color: #f8f9fa;
             --text-color: #333;
-            --card-bg: #ffffff;
+            
+            /* Keyword Colors */
+            --kw-initial: #2980b9; /* Blue */
+            --kw-final: #27ae60;   /* Green */
+            --kw-tone: #8e44ad;    /* Purple */
+            --kw-rule: #d35400;    /* Orange */
         }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
             background-color: var(--bg-color);
             color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
+            height: 100vh;
+            overflow: hidden;
         }
-        header {
-            background-color: var(--primary-color);
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: var(--sidebar-bg);
             color: white;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .sidebar-header {
             padding: 20px;
-            border-radius: 8px;
+            background-color: #1a252f;
             text-align: center;
-            margin-bottom: 20px;
         }
-        h1, h2, h3 {
-            margin-top: 0;
+        
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #ecf0f1;
         }
-        .container {
-            max-width: 1000px;
-            margin: auto;
+
+        .menu-btn {
+            padding: 15px 20px;
+            border: none;
+            background: none;
+            color: #ecf0f1;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-left: 4px solid transparent;
         }
-        .timeline-badge {
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.9em;
+
+        .menu-btn:hover {
+            background-color: var(--sidebar-hover);
+        }
+
+        .menu-btn.active {
+            background-color: var(--sidebar-hover);
+            border-left: 4px solid var(--sidebar-active);
             font-weight: bold;
-            margin-bottom: 10px;
-            display: inline-block;
         }
-        .section-card {
-            background-color: var(--card-bg);
-            border-left: 5px solid var(--primary-color);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 4px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        /* Content Area */
+        .content {
+            flex-grow: 1;
+            padding: 40px;
+            overflow-y: auto;
+            background-color: var(--bg-color);
         }
-        .malay-hack {
-            background-color: #e8f5e9;
-            border-left: 4px solid #4caf50;
-            padding: 10px 15px;
-            margin: 10px 0;
-            font-style: italic;
+
+        .section {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            max-width: 900px;
+            margin: 0 auto;
         }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 { color: var(--primary); margin-top: 0; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        h2 { color: #2c3e50; margin-top: 25px; }
+
+        /* Keyword Highlights */
+        .kw-initial { color: var(--kw-initial); font-weight: bold; }
+        .kw-final { color: var(--kw-final); font-weight: bold; }
+        .kw-tone { color: var(--kw-tone); font-weight: bold; }
+        .kw-rule { color: var(--kw-rule); font-weight: bold; }
+        .kw-pinyin { background-color: #f1f2f6; padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 1.1em; color: #d32f2f; }
+
+        /* Tables */
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 15px 0;
+            margin: 20px 0;
+            font-size: 0.95rem;
         }
+        
         th, td {
             border: 1px solid #ddd;
-            padding: 10px;
+            padding: 12px 15px;
             text-align: left;
         }
+        
         th {
-            background-color: #f4f4f4;
+            background-color: #f8f9fa;
+            color: #333;
+            font-weight: bold;
         }
-        .important-rule {
-            background-color: #ffebee;
-            border-left: 4px solid #f44336;
-            padding: 10px 15px;
-            margin: 10px 0;
+
+        tr:nth-child(even) {
+            background-color: #fdfdfd;
         }
-        a.resource-link {
+
+        tr:hover {
+            background-color: #f1f8ff;
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+
+        .resource-link {
             display: inline-block;
-            background-color: var(--primary-color);
+            background-color: var(--primary);
             color: white;
             text-decoration: none;
-            padding: 10px 20px;
+            padding: 12px 24px;
             border-radius: 4px;
             font-weight: bold;
-            margin-top: 10px;
+            margin-top: 20px;
+            transition: 0.3s;
         }
-        a.resource-link:hover {
-            background-color: #b71c1c;
-        }
+        .resource-link:hover { background-color: #b71c1c; }
+        
+        .center { text-align: center; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>KUAILE XUE HANYU: Lesson 1</h1>
-        <h2>The Phonetics of Chinese (Teacher's Edition)</h2>
-        <p>Target Audience: Zero-basis beginners (Malay, Sabahan, Indian students)</p>
-        <p>Total Duration: 2.5 Hours (150 minutes)</p>
-    </header>
-
-    <!-- Part 1: Intro -->
-    <div class="section-card">
-        <span class="timeline-badge">0:00 - 0:15 (15 mins)</span>
-        <h2>1. Introduction to Pinyin & Syllables</h2>
-        <p><strong>Concept:</strong> Each Chinese character usually represents a single syllable[cite: 1].</p>
-        <p>Explain that a Chinese syllable is made up of three parts[cite: 1]:</p>
-        <ul>
-            <li><strong>Initial:</strong> The consonantal beginning of a syllable[cite: 1].</li>
-            <li><strong>Final:</strong> The part of the syllable excluding the initial[cite: 1].</li>
-            <li><strong>Tone:</strong> 4 tones and a neutral tone[cite: 1].</li>
-        </ul>
-        <p><em>Example on board:</em> <code>n + ǐ = nǐ (你)</code>[cite: 1].</p>
-    </div>
-
-    <!-- Part 2: Tones -->
-    <div class="section-card">
-        <span class="timeline-badge">0:15 - 0:45 (30 mins)</span>
-        <h2>2. The Four Tones</h2>
-        <p>Different tones express different meanings. E.g., mā (mother) vs. mà (scold)[cite: 1, 2].</p>
-        <ul>
-            <li><strong>1st Tone (Flat tone):</strong> Sounds like a robot (ēēēē)[cite: 2].</li>
-            <li><strong>2nd Tone (Rising tone):</strong> Sounds confused (like asking "Huh?")[cite: 2].</li>
-            <li><strong>3rd Tone (Falling-Rising tone):</strong> Like a small rollercoaster (your voice goes down, then up)[cite: 2].</li>
-            <li><strong>4th Tone (Falling tone):</strong> Sounds angry OR sounds like you got stepped on![cite: 2].</li>
-            <li><strong>Neutral Tone:</strong> Light, short pronunciation used in continuous speech[cite: 2]. It is seldom used to stand alone[cite: 2].</li>
-        </ul>
-        <p><em>Activity:</em> Have students practice tones on the syllable "ma" until they can differentiate the "robot" from the "angry" tone.</p>
-    </div>
-
-    <!-- Part 3: Simple Finals -->
-    <div class="section-card">
-        <span class="timeline-badge">0:45 - 1:15 (30 mins)</span>
-        <h2>3. Simple Finals (Vowels) with Malay/English Hacks</h2>
-        <p>Finals' pronunciation is determined by tongue height, tongue position, and lip shape[cite: 1]. Introduce the "Big mouth", "Smile", and "Round lip" concepts[cite: 2].</p>
-        
-        <table>
-            <tr>
-                <th>Pinyin Final</th>
-                <th>Mouth Shape</th>
-                <th>Pronunciation Hacks (Suku Kata / English)</th>
-            </tr>
-            <tr>
-                <td><strong>a</strong></td>
-                <td>Open Mouth (Big mouth sound)[cite: 2]</td>
-                <td>BM - <strong>a</strong>bang | BI - f<strong>a</strong>ther[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>o</strong></td>
-                <td>Open Mouth[cite: 2]</td>
-                <td>BM - <strong>o</strong>tak | BI - l<strong>aw</strong>[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>e</strong></td>
-                <td>Open Mouth[cite: 2]</td>
-                <td>BM - <strong>e</strong>mak | BI - ag<strong>o</strong>[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>i</strong></td>
-                <td>Spread Vowel (Smile sound)[cite: 2]</td>
-                <td>BM - <strong>i</strong>kan | BI - s<strong>ee</strong>[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>u</strong></td>
-                <td>Rounded Vowel (Round lip sound)[cite: 2]</td>
-                <td>BM - <strong>u</strong>lang | BI - m<strong>oo</strong>d[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>ü</strong></td>
-                <td>Close Rounded (Tight round lip sound)[cite: 2]</td>
-                <td>BM - <strong>yo</strong>yo | BI - sal<strong>u</strong>t[cite: 2]</td>
-            </tr>
-        </table>
-        <div class="malay-hack">
-            <strong>Teacher Tip:</strong> Spend extra time on "ü". Have students say "i" (ikan) but force their lips into the "u" (ulang) shape. 
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>KUAILE XUE HANYU</h2>
+            <p style="font-size: 0.8rem; margin-top: 5px; color:#bdc3c7;">Lesson 1: Phonetics</p>
         </div>
+        <button class="menu-btn active" onclick="showSection('intro', this)">1. Intro & Syllables</button>
+        <button class="menu-btn" onclick="showSection('tones', this)">2. The Four Tones</button>
+        <button class="menu-btn" onclick="showSection('initials', this)">3. Initials (21)</button>
+        <button class="menu-btn" onclick="showSection('finals', this)">4. Finals (36)</button>
+        <button class="menu-btn" onclick="showSection('rules', this)">5. Spelling Rules</button>
+        <button class="menu-btn" onclick="showSection('resources', this)">6. Homework</button>
     </div>
 
-    <!-- BREAK -->
-    <div class="section-card" style="background-color: #e0f7fa;">
-        <span class="timeline-badge">1:15 - 1:25 (10 mins)</span>
-        <h2>Short Break</h2>
-    </div>
-
-    <!-- Part 4: Initials -->
-    <div class="section-card">
-        <span class="timeline-badge">1:25 - 2:00 (35 mins)</span>
-        <h2>4. Initials (Consonants) & The "Suku Kata" Shortcuts</h2>
-        <p>Chinese pinyin has 21 initials[cite: 1].</p>
+    <!-- Main Content -->
+    <div class="content">
         
-        <h3>A. Simple Initials</h3>
-        <ul>
-            <li><strong>b, p, m, f:</strong> Both lips / upper teeth and lower lip[cite: 1, 2]. Think: bear, pear, may, food[cite: 2].</li>
-            <li><strong>d, t, n, l:</strong> Tongue tip / nose sound / side sound[cite: 1, 2]. Think: do, two, night, light[cite: 2].</li>
-            <li><strong>g, k, h:</strong> Back of the tongue[cite: 1, 2]. Think: bag, back, hat[cite: 2].</li>
-        </ul>
-
-        <h3>B. Palatal Initials (j, q, x) vs Sibilant Initials (z, c, s)</h3>
-        <p>This is often the hardest part for Malaysian students. Use these direct comparisons:</p>
-        <table style="background-color: #fff9c4;">
-            <tr>
-                <th>Pinyin</th>
-                <th>Category</th>
-                <th>Suku Kata / English Hack</th>
-                <th>Examples</th>
-            </tr>
-            <tr>
-                <td><strong>j</strong></td>
-                <td>Palatal (front of tongue)[cite: 1, 2]</td>
-                <td>BM - <strong>zirafah</strong> / BI - chicken[cite: 2]</td>
-                <td>jī (chicken)[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>q</strong></td>
-                <td>Palatal[cite: 1, 2]</td>
-                <td>BM - <strong>cita</strong>[cite: 2]</td>
-                <td>qī (seven)[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>x</strong></td>
-                <td>Palatal[cite: 1, 2]</td>
-                <td>BM - <strong>siput</strong>[cite: 2]</td>
-                <td>xī (west)[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>z</strong></td>
-                <td>Sibilant (tongue tip)[cite: 1, 2]</td>
-                <td>BI - kid<strong>s</strong>[cite: 2]</td>
-                <td>zū (to rent)[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>c</strong></td>
-                <td>Sibilant[cite: 1, 2]</td>
-                <td>BI - cat<strong>s</strong>[cite: 2]</td>
-                <td>cí (word)[cite: 2]</td>
-            </tr>
-            <tr>
-                <td><strong>s</strong></td>
-                <td>Sibilant[cite: 1, 2]</td>
-                <td>BI - <strong>s</strong>peak[cite: 2]</td>
-                <td>sì (four)[cite: 2]</td>
-            </tr>
-        </table>
-        <div class="important-rule">
-            <strong>CRITICAL WARNING FOR MALAY STUDENTS:</strong> <br>
-            Make sure they do NOT read "z" as "zirafah", "c" as "cita", or "s" as "siput"[cite: 2]. Remind them: <br>
-            ❌ zī ≠ zirafah  --> ✅ jī = zirafah[cite: 2]<br>
-            ❌ cī ≠ cita --> ✅ qī = cita[cite: 2]<br>
-            ❌ sī ≠ siput --> ✅ xī = siput[cite: 2]
+        <!-- Section 1: Intro -->
+        <div id="intro" class="section active">
+            <h1>1. Introduction to Pinyin & Syllables</h1>
+            <p>Each Chinese character usually represents a single syllable. For example, the character <span class="kw-pinyin">你</span> (you) has the Pinyin <span class="kw-pinyin">nǐ</span>.</p>
+            
+            <h2>The Components of Pinyin</h2>
+            <p>A Chinese syllable is made up of three parts:</p>
+            <ul>
+                <li><span class="kw-initial">Initial</span>: The consonantal beginning of a syllable.</li>
+                <li><span class="kw-final">Final</span>: The part of the syllable excluding the initial.</li>
+                <li><span class="kw-tone">Tone</span>: One of the 4 tones (or neutral tone) placed on the main vowel.</li>
+            </ul>
+            
+            <div class="center" style="margin: 30px 0; font-size: 1.5rem; background: #f8f9fa; padding: 20px; border-radius: 8px;">
+                <span class="kw-initial">n</span> + <span class="kw-final">i</span> + <span class="kw-tone">ˇ</span> = <span class="kw-pinyin">nǐ</span>
+            </div>
         </div>
 
-        <h3>C. Retroflex Initials (zh, ch, sh, r)</h3>
-        <p>Tongue tip curled back[cite: 1, 2]. Think: zh (page), ch (cheap), sh (sheep), r (right)[cite: 2].</p>
+        <!-- Section 2: Tones -->
+        <div id="tones" class="section">
+            <h1>2. The Four Tones</h1>
+            <p>Different <span class="kw-tone">Tones</span> may express entirely different meanings. <br>
+                For example: <span class="kw-pinyin">mā</span> (mother) vs. <span class="kw-pinyin">mà</span> (scold).
+            </p>
+
+            <table>
+                <tr>
+                    <th>Tone</th>
+                    <th>Mark</th>
+                    <th>Description</th>
+                    <th>Sound Concept</th>
+                </tr>
+                <tr>
+                    <td><span class="kw-tone">1st Tone</span></td>
+                    <td class="center"><span class="kw-pinyin">ā</span></td>
+                    <td>Flat tone</td>
+                    <td>Sounds like a <strong>robot</strong> (ēēēē)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-tone">2nd Tone</span></td>
+                    <td class="center"><span class="kw-pinyin">á</span></td>
+                    <td>Rising tone</td>
+                    <td>Sounds <strong>confused</strong> (like asking "Huh?")</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-tone">3rd Tone</span></td>
+                    <td class="center"><span class="kw-pinyin">ǎ</span></td>
+                    <td>Falling-Rising tone</td>
+                    <td>Like a small <strong>rollercoaster</strong> (voice goes down, then up)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-tone">4th Tone</span></td>
+                    <td class="center"><span class="kw-pinyin">à</span></td>
+                    <td>Falling tone</td>
+                    <td>Sounds <strong>angry</strong> OR sounds like you got stepped on!</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-tone">Neutral</span></td>
+                    <td class="center"><span class="kw-pinyin">a</span></td>
+                    <td>No mark</td>
+                    <td>Light, short, soft. Used in continuous speech (e.g., <span class="kw-pinyin">ma</span>, <span class="kw-pinyin">de</span>)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Section 3: Initials -->
+        <div id="initials" class="section">
+            <h1>3. All 21 Initials (Consonants)</h1>
+            <p>The <span class="kw-initial">Initial</span> precedes the final in a syllable. Pay special attention to the Suku Kata hacks to master the pronunciation.</p>
+
+            <table>
+                <tr>
+                    <th>Initial</th>
+                    <th>Category & Articulation</th>
+                    <th>Suku Kata / English Hack</th>
+                    <th>Example</th>
+                </tr>
+                <!-- Simple -->
+                <tr>
+                    <td><span class="kw-pinyin">b</span></td>
+                    <td rowspan="4"><strong>Simple (Lips/Teeth)</strong></td>
+                    <td>BI - <strong>b</strong>ear</td>
+                    <td><span class="kw-pinyin">bàba</span> (dad)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">p</span></td>
+                    <td>BI - <strong>p</strong>ear</td>
+                    <td><span class="kw-pinyin">pópo</span> (grandma)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">m</span></td>
+                    <td>BI - <strong>m</strong>ay</td>
+                    <td><span class="kw-pinyin">māma</span> (mom)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">f</span></td>
+                    <td>BI - <strong>f</strong>ood</td>
+                    <td><span class="kw-pinyin">fúwù</span> (service)</td>
+                </tr>
+                
+                <tr>
+                    <td><span class="kw-pinyin">d</span></td>
+                    <td rowspan="4"><strong>Simple (Tongue tip)</strong></td>
+                    <td>BI - <strong>d</strong>o</td>
+                    <td><span class="kw-pinyin">dìdi</span> (younger brother)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">t</span></td>
+                    <td>BI - <strong>t</strong>wo</td>
+                    <td><span class="kw-pinyin">dìtú</span> (map)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">n</span></td>
+                    <td>BI - <strong>n</strong>ight</td>
+                    <td><span class="kw-pinyin">nǚ</span> (female)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">l</span></td>
+                    <td>BI - <strong>l</strong>ight</td>
+                    <td><span class="kw-pinyin">lǜ</span> (green)</td>
+                </tr>
+
+                <tr>
+                    <td><span class="kw-pinyin">g</span></td>
+                    <td rowspan="3"><strong>Simple (Back of tongue)</strong></td>
+                    <td>BI - ba<strong>g</strong></td>
+                    <td><span class="kw-pinyin">gēge</span> (elder brother)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">k</span></td>
+                    <td>BI - bac<strong>k</strong></td>
+                    <td><span class="kw-pinyin">kè</span> (lesson)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">h</span></td>
+                    <td>BI - <strong>h</strong>at</td>
+                    <td><span class="kw-pinyin">hē</span> (drink)</td>
+                </tr>
+
+                <!-- Palatal -->
+                <tr style="background-color: #fff9c4;">
+                    <td><span class="kw-pinyin">j</span></td>
+                    <td rowspan="3"><strong>Palatal (Front of tongue)</strong><br><em>*Smile while speaking</em></td>
+                    <td>BM - <strong>zirafah</strong> / BI - chicken</td>
+                    <td><span class="kw-pinyin">jī</span> (chicken)</td>
+                </tr>
+                <tr style="background-color: #fff9c4;">
+                    <td><span class="kw-pinyin">q</span></td>
+                    <td>BM - <strong>cita</strong></td>
+                    <td><span class="kw-pinyin">qī</span> (seven)</td>
+                </tr>
+                <tr style="background-color: #fff9c4;">
+                    <td><span class="kw-pinyin">x</span></td>
+                    <td>BM - <strong>siput</strong></td>
+                    <td><span class="kw-pinyin">xī</span> (west)</td>
+                </tr>
+
+                <!-- Sibilant -->
+                <tr style="background-color: #e8f5e9;">
+                    <td><span class="kw-pinyin">z</span></td>
+                    <td rowspan="3"><strong>Sibilant (Tongue tip)</strong><br><em>*Teeth closed</em></td>
+                    <td>BI - kid<strong>s</strong></td>
+                    <td><span class="kw-pinyin">zū</span> (to rent)</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                    <td><span class="kw-pinyin">c</span></td>
+                    <td>BI - cat<strong>s</strong></td>
+                    <td><span class="kw-pinyin">cí</span> (word)</td>
+                </tr>
+                <tr style="background-color: #e8f5e9;">
+                    <td><span class="kw-pinyin">s</span></td>
+                    <td>BI - <strong>s</strong>peak</td>
+                    <td><span class="kw-pinyin">sì</span> (four)</td>
+                </tr>
+
+                <!-- Retroflex -->
+                <tr>
+                    <td><span class="kw-pinyin">zh</span></td>
+                    <td rowspan="4"><strong>Retroflex (Curled back)</strong><br><em>*Roll your tongue</em></td>
+                    <td>BI - pa<strong>ge</strong></td>
+                    <td><span class="kw-pinyin">zhīzhū</span> (spider)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">ch</span></td>
+                    <td>BI - <strong>ch</strong>eap</td>
+                    <td><span class="kw-pinyin">chī</span> (eat)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">sh</span></td>
+                    <td>BI - <strong>sh</strong>eep</td>
+                    <td><span class="kw-pinyin">shé</span> (snake)</td>
+                </tr>
+                <tr>
+                    <td><span class="kw-pinyin">r</span></td>
+                    <td>BI - <strong>r</strong>ight</td>
+                    <td><span class="kw-pinyin">rè</span> (hot)</td>
+                </tr>
+            </table>
+
+            <div class="warning-box">
+                <strong>CRITICAL HACK FOR MALAY STUDENTS:</strong><br>
+                Do NOT read "z" as "zirafah", "c" as "cita", or "s" as "siput". <br>
+                Remember the mapping:<br>
+                ✅ <span class="kw-pinyin">j</span> = zirafah &nbsp;&nbsp;|&nbsp;&nbsp;
+                ✅ <span class="kw-pinyin">q</span> = cita &nbsp;&nbsp;|&nbsp;&nbsp;
+                ✅ <span class="kw-pinyin">x</span> = siput
+            </div>
+        </div>
+
+        <!-- Section 4: Finals -->
+        <div id="finals" class="section">
+            <h1>4. All 36 Finals (Vowels)</h1>
+            <p>The <span class="kw-final">Final</span> follows the initial. Pronunciation depends on tongue height, position, and lip shape.</p>
+
+            <h3>A. Simple Finals (6) & Special Final (1)</h3>
+            <table>
+                <tr>
+                    <th>Final</th>
+                    <th>Mouth Shape</th>
+                    <th>Suku Kata / English Hack</th>
+                    <th>Example</th>
+                </tr>
+                <tr><td><span class="kw-pinyin">a</span></td><td>Big mouth</td><td>BM - <strong>a</strong>bang | BI - f<strong>a</strong>ther</td><td><span class="kw-pinyin">bàba</span></td></tr>
+                <tr><td><span class="kw-pinyin">o</span></td><td>Big mouth</td><td>BM - <strong>o</strong>tak | BI - l<strong>aw</strong></td><td><span class="kw-pinyin">wǒ</span></td></tr>
+                <tr><td><span class="kw-pinyin">e</span></td><td>Big mouth</td><td>BM - <strong>e</strong>mak | BI - ag<strong>o</strong></td><td><span class="kw-pinyin">gēge</span></td></tr>
+                <tr><td><span class="kw-pinyin">i</span></td><td>Smile sound</td><td>BM - <strong>i</strong>kan | BI - s<strong>ee</strong></td><td><span class="kw-pinyin">bǐ</span></td></tr>
+                <tr><td><span class="kw-pinyin">u</span></td><td>Round lip</td><td>BM - <strong>u</strong>lang | BI - m<strong>oo</strong>d</td><td><span class="kw-pinyin">wǔ</span></td></tr>
+                <tr><td><span class="kw-pinyin">ü</span></td><td>Tight round lip</td><td>BM - <strong>yo</strong>yo | BI - sal<strong>u</strong>t</td><td><span class="kw-pinyin">nǚ</span></td></tr>
+                <tr style="background-color: #f1f8ff;"><td><span class="kw-pinyin">er</span></td><td>Special</td><td>BM - <strong>er</strong>ti | BI - lett<strong>er</strong></td><td><span class="kw-pinyin">shí'èr</span></td></tr>
+            </table>
+
+            <h3>B. Compound Finals (13)</h3>
+            <table>
+                <tr>
+                    <th>Final</th>
+                    <th>Suku Kata / English Hack</th>
+                    <th>Example</th>
+                </tr>
+                <tr><td><span class="kw-pinyin">ai</span></td><td>BI - buy / eye</td><td><span class="kw-pinyin">nǎinai</span> (grandma)</td></tr>
+                <tr><td><span class="kw-pinyin">ei</span></td><td>BI - eight</td><td><span class="kw-pinyin">mèimei</span> (younger sister)</td></tr>
+                <tr><td><span class="kw-pinyin">ao</span></td><td>BI - how / ouch</td><td><span class="kw-pinyin">lǎoshī</span> (teacher)</td></tr>
+                <tr><td><span class="kw-pinyin">ou</span></td><td>BI - oh / owe</td><td><span class="kw-pinyin">Ōuzhōu</span> (Europe)</td></tr>
+                <tr><td><span class="kw-pinyin">ia</span> (ya)</td><td>BM - ya</td><td><span class="kw-pinyin">jiā</span> (home)</td></tr>
+                <tr><td><span class="kw-pinyin">ie</span> (ye)</td><td>BI - yes</td><td><span class="kw-pinyin">jiějie</span> (elder sister)</td></tr>
+                <tr><td><span class="kw-pinyin">iao</span> (yao)</td><td>yi + ao</td><td><span class="kw-pinyin">yào</span> (to want)</td></tr>
+                <tr><td><span class="kw-pinyin">iou / iu</span> (you)</td><td>yi + ou</td><td><span class="kw-pinyin">liù</span> (six)</td></tr>
+                <tr><td><span class="kw-pinyin">ua</span> (wa)</td><td>wu + a</td><td><span class="kw-pinyin">wá</span> (baby)</td></tr>
+                <tr><td><span class="kw-pinyin">uo</span> (wo)</td><td>wu + o</td><td><span class="kw-pinyin">shuō</span> (to say)</td></tr>
+                <tr><td><span class="kw-pinyin">uai</span> (wai)</td><td>wu + ai</td><td><span class="kw-pinyin">shuài</span> (handsome)</td></tr>
+                <tr><td><span class="kw-pinyin">uei / ui</span> (wei)</td><td>BI - wait</td><td><span class="kw-pinyin">shuǐ</span> (water)</td></tr>
+                <tr><td><span class="kw-pinyin">üe</span> (yue)</td><td>yueh</td><td><span class="kw-pinyin">xuéxí</span> (to learn)</td></tr>
+            </table>
+
+            <h3>C. Nasal Finals (16)</h3>
+            <p><strong>Hack:</strong> <span class="kw-pinyin">-n</span> sounds like BI "wi<strong>n</strong>" (front nasal). <span class="kw-pinyin">-ng</span> sounds like BI "wi<strong>ng</strong>" (back nasal).</p>
+            <table>
+                <tr>
+                    <th>Final</th>
+                    <th>Note / Hack</th>
+                    <th>Example</th>
+                </tr>
+                <tr><td><span class="kw-pinyin">an</span></td><td>Big mouth</td><td><span class="kw-pinyin">nán</span> (male)</td></tr>
+                <tr><td><span class="kw-pinyin">en</span></td><td>Big mouth</td><td><span class="kw-pinyin">bèn</span> (stupid)</td></tr>
+                <tr><td><span class="kw-pinyin">ang</span></td><td>Big mouth</td><td><span class="kw-pinyin">máng</span> (busy)</td></tr>
+                <tr><td><span class="kw-pinyin">eng</span></td><td>Big mouth</td><td><span class="kw-pinyin">lěng</span> (cold)</td></tr>
+                
+                <tr><td><span class="kw-pinyin">ian</span> (yan)</td><td>Sounds like "y<strong>en</strong>" or "i<strong>en</strong>"</td><td><span class="kw-pinyin">yán</span> (salt)</td></tr>
+                <tr><td><span class="kw-pinyin">in</span> (yin)</td><td>Smile sound</td><td><span class="kw-pinyin">yīn</span> (shady)</td></tr>
+                <tr><td><span class="kw-pinyin">iang</span> (yang)</td><td>yi + ang</td><td><span class="kw-pinyin">yáng</span> (sheep)</td></tr>
+                <tr><td><span class="kw-pinyin">ing</span> (ying)</td><td>Smile sound</td><td><span class="kw-pinyin">bīng</span> (ice)</td></tr>
+
+                <tr><td><span class="kw-pinyin">uan</span> (wan)</td><td>wu + an</td><td><span class="kw-pinyin">suān</span> (sour)</td></tr>
+                <tr><td><span class="kw-pinyin">uen / un</span> (wen)</td><td>wu + en</td><td><span class="kw-pinyin">kùn</span> (sleepy)</td></tr>
+                <tr><td><span class="kw-pinyin">uang</span> (wang)</td><td>wu + ang</td><td><span class="kw-pinyin">wàng</span> (to forget)</td></tr>
+                <tr><td><span class="kw-pinyin">ueng</span> (weng)</td><td>wu + eng</td><td><span class="kw-pinyin">fùwēng</span> (rich person)</td></tr>
+                <tr><td><span class="kw-pinyin">ong</span></td><td>Round lip</td><td><span class="kw-pinyin">cōngming</span> (clever)</td></tr>
+
+                <tr><td><span class="kw-pinyin">üan</span> (yuan)</td><td>Sounds like "yu<strong>en</strong>"</td><td><span class="kw-pinyin">yuán</span> (circle)</td></tr>
+                <tr><td><span class="kw-pinyin">ün</span> (yun)</td><td>Tight round lip</td><td><span class="kw-pinyin">yún</span> (cloud)</td></tr>
+                <tr><td><span class="kw-pinyin">iong</span> (yong)</td><td>yi + ong</td><td><span class="kw-pinyin">yòng</span> (to use)</td></tr>
+            </table>
+        </div>
+
+        <!-- Section 5: Rules -->
+        <div id="rules" class="section">
+            <h1>5. Pinyin Spelling Rules</h1>
+            
+            <h3 class="kw-rule">Rule 1: Use of "y" and "w"</h3>
+            <ul>
+                <li>If <strong>i</strong> is the main vowel, add <strong>y</strong> (<span class="kw-pinyin">i &rarr; yi</span>). If it's NOT the main vowel, replace with <strong>y</strong> (<span class="kw-pinyin">ian &rarr; yan</span>).</li>
+                <li>If <strong>u</strong> is the main vowel, add <strong>w</strong> (<span class="kw-pinyin">u &rarr; wu</span>). If it's NOT the main vowel, replace with <strong>w</strong> (<span class="kw-pinyin">uan &rarr; wan</span>).</li>
+            </ul>
+
+            <h3 class="kw-rule">Rule 2: Dropping the dots on "ü"</h3>
+            <p>The letters <span class="kw-initial">j</span>, <span class="kw-initial">q</span>, and <span class="kw-initial">x</span> already create a similar sound to "ü". Therefore, when they combine with "ü", the two dots are <strong>OMITTED</strong>:</p>
+            <ul>
+                <li><span class="kw-initial">j</span> + <span class="kw-final">ü</span> = <span class="kw-pinyin">ju</span> (e.g., jù 句)</li>
+                <li><span class="kw-initial">q</span> + <span class="kw-final">ü</span> = <span class="kw-pinyin">qu</span> (e.g., qù 去)</li>
+                <li><span class="kw-initial">x</span> + <span class="kw-final">ü</span> = <span class="kw-pinyin">xu</span> (e.g., xǔ 许)</li>
+            </ul>
+            <p><em>Note: "j, q, x" NEVER combine with a, o, e, u. Also, when "ü" stands alone (no initial), add "y" and drop the dots (<span class="kw-pinyin">üan &rarr; yuan</span>).</em></p>
+
+            <h3 class="kw-rule">Rule 3: Tone Mark Placement</h3>
+            <ul>
+                <li>Place it on the main vowel in this priority order: <strong>a &rarr; o &rarr; e &rarr; i &rarr; u &rarr; ü</strong> (e.g., bāi, guó, guǎi).</li>
+                <li>If on the vowel "i", omit the dot (e.g., yín).</li>
+                <li>For "iu" and "ui", place it on the <strong>last</strong> vowel (e.g., tuī, qiú).</li>
+            </ul>
+
+            <h3 class="kw-rule">Rule 4: Dividing Mark (') & Capitalization</h3>
+            <ul>
+                <li>Use the dividing mark (') when a syllable starting with "a, o, e" follows another syllable to avoid confusion (e.g., Tiān'ānmén vs. Tiānānmén).</li>
+                <li>Syllables forming the same word are written together (e.g., <span class="kw-pinyin">bà ba &rarr; bàba</span>).</li>
+                <li>Capitalize proper nouns and the first letter of sentences (e.g., <span class="kw-pinyin">Lín Nà</span>).</li>
+            </ul>
+        </div>
+
+        <!-- Section 6: Resources -->
+        <div id="resources" class="section">
+            <h1>6. Post-Class Review & Homework</h1>
+            <p>To master the pronunciation of initials, finals, and tones, please review the complete Pinyin chart. Use the audio playback feature to practice repeating after native speakers.</p>
+            
+            <div class="center">
+                <a href="https://yoyochinese.com/chinese-learning-tools/Mandarin-Chinese-pronunciation-lesson/pinyin-chart-table" target="_blank" class="resource-link">
+                    Open Interactive Pinyin Chart
+                </a>
+            </div>
+        </div>
+
     </div>
 
-    <!-- Part 5: Compound & Nasal Finals -->
-    <div class="section-card">
-        <span class="timeline-badge">2:00 - 2:15 (15 mins)</span>
-        <h2>5. Compound & Nasal Finals (Traps to Avoid)</h2>
-        <p>Explain that "ian" does NOT sound like "ee-an". It sounds like "yen" or "ien"[cite: 2]. (e.g., piányi, yán)[cite: 2].</p>
-        <p>Similarly, "üan" is pronounced like "yuen" (e.g., yuán)[cite: 2].</p>
-        <p><strong>Nasal Finals:</strong> -n sounds like BI "win" (e.g., fàn), while -ng sounds like BI "wing" (e.g., fàng)[cite: 2].</p>
-    </div>
-
-    <!-- Part 6: Spelling Rules -->
-    <div class="section-card">
-        <span class="timeline-badge">2:15 - 2:25 (10 mins)</span>
-        <h2>6. Essential Spelling Rules</h2>
-        <ul>
-            <li><strong>The "y" and "w" Rules:</strong>
-                <ul>
-                    <li>If "i" is the main vowel, add "y" (i → yi)[cite: 1]. If not the main vowel, replace with "y" (ian → yan)[cite: 1, 2].</li>
-                    <li>If "u" is the main vowel, add "w" (u → wu)[cite: 1, 2]. Replace "u" with "w" for others (uan → wan)[cite: 1, 2].</li>
-                </ul>
-            </li>
-            <li><strong>Dropping the Dots on "ü":</strong> 
-                When "ü" combines with "j", "q", and "x", the two dots are OMITTED (jü → ju, qü → qu, xü → xu)[cite: 1, 2]. Note: "j, q, x" never combine with a, o, e, u[cite: 1, 2]. Also, when "ü" has no initial consonant, add "y" and remove the dots (üan → yuan)[cite: 2].
-            </li>
-            <li><strong>Tone Marks:</strong> The tone mark must be placed on the main vowel letters in order of a, o, e, i, u, ü[cite: 1, 2]. When marked above "i", the dot is omitted (e.g., yín)[cite: 1].</li>
-            <li><strong>Dividing Mark ('):</strong> Used when a syllable starting with "a, o, e" follows another syllable to clarify boundaries (e.g., Tian'anmén vs Tiananmen)[cite: 1, 2].</li>
-            <li><strong>Capitalization:</strong> Capitalize the first letter of proper nouns (e.g., Lín Nà) and the first letter of a sentence[cite: 1, 2]. Syllables forming the same word should be written together[cite: 1].</li>
-        </ul>
-    </div>
-
-    <!-- Part 7: Wrap-up & Resources -->
-    <div class="section-card">
-        <span class="timeline-badge">2:25 - 2:30 (5 mins)</span>
-        <h2>7. Wrap-up & Recommended Homework</h2>
-        <p>Encourage students to practice identifying initials and tones using the recommended online interactive chart.</p>
-        <p><strong>Required Post-Class Practice Link:</strong></p>
-        <a href="https://yoyochinese.com/chinese-learning-tools/Mandarin-Chinese-pronunciation-lesson/pinyin-chart-table" target="_blank" class="resource-link">
-            Yoyo Chinese Pinyin Chart Table
-        </a>
-    </div>
-
-</div>
-
+    <!-- JavaScript for Navigation -->
+    <script>
+        function showSection(sectionId, btnElement) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(function(sec) {
+                sec.classList.remove('active');
+            });
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.menu-btn').forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            // Add active class to clicked button
+            btnElement.classList.add('active');
+        }
+    </script>
 </body>
 </html>
