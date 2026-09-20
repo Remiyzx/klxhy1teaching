@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lesson 1 - The Phonetics of Chinese</title>
+    <!-- Import Andika Font for Authentic Standard Pinyin (Single-story 'a' and 'g') -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Andika:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
         :root {
-            --primary: #d32f2f;
-            --topbar-bg: #2c3e50;
-            --topbar-hover: #34495e;
-            --topbar-active: #e74c3c;
-            --bg-color: #f8f9fa;
-            --text-color: #2c3e50;
+            --primary: #0f766e;        /* Deep Calm Teal */
+            --primary-dark: #115e59;   /* Dark Teal */
+            --primary-light: #ccfbf1;  /* Soft Mint Tint */
+            --topbar-bg: #0f172a;      /* Slate 900 */
+            --topbar-hover: #1e293b;    /* Slate 800 */
+            --topbar-active: #0284c7;   /* Ocean Blue */
+            --bg-color: #f8fafc;       /* Off-white Background */
+            --text-color: #1e293b;     /* High contrast Dark Charcoal */
             
-            /* Keyword Colors */
-            --kw-initial: #1d4ed8; /* High-contrast Blue */
-            --kw-final: #15803d;   /* High-contrast Green */
-            --kw-tone: #7e22ce;    /* High-contrast Purple */
-            --kw-rule: #c2410c;    /* High-contrast Orange */
+            /* Keyword & Category Colors */
+            --kw-initial: #0284c7;     /* Ocean Blue */
+            --kw-final: #16a34a;       /* Emerald Green */
+            --kw-tone: #7c3aed;        /* Royal Purple */
+            --kw-rule: #d97706;        /* Warm Amber */
         }
         
         body {
@@ -26,8 +31,13 @@
             padding: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
-            font-size: 20px; /* Base Font Size boosted for Projection */
-            line-height: 1.7;
+            font-size: 20px; /* Boosted Base Font Size for Classroom Projection */
+            line-height: 1.75;
+        }
+
+        /* Standard Chinese Pinyin Font Class */
+        .pinyin-font, .kw-pinyin, .pinyin-sample {
+            font-family: 'Andika', 'STKaiti', 'Kaiti', 'Century Gothic', sans-serif !important;
         }
 
         /* Top Navigation Bar */
@@ -41,23 +51,24 @@
 
         .top-nav-header {
             padding: 12px 30px;
-            background-color: #1a252f;
+            background-color: #0284c7;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #34495e;
+            color: white;
         }
 
         .top-nav-header h2 {
             margin: 0;
-            font-size: 1.4rem;
-            color: #f8fafc;
+            font-size: 1.35rem;
+            color: #ffffff;
             letter-spacing: 1px;
         }
 
         .top-nav-header span {
             font-size: 1rem;
-            color: #cbd5e1;
+            color: #e0f2fe;
+            font-weight: 600;
         }
 
         .menu-bar {
@@ -68,11 +79,11 @@
         }
 
         .menu-btn {
-            padding: 14px 22px;
+            padding: 14px 20px;
             border: none;
             background: none;
             color: #ecf0f1;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -90,13 +101,13 @@
         .menu-btn.active {
             background-color: var(--topbar-hover);
             border-bottom: 4px solid var(--topbar-active);
-            color: #ffffff;
+            color: #38bdf8;
         }
 
         /* Main Content Container */
         .content {
             padding: 40px 20px;
-            max-width: 1100px; /* Extended width for 16:9 screens */
+            max-width: 1100px; /* 16:9 Projector Optimized Width */
             margin: 0 auto;
         }
 
@@ -106,7 +117,7 @@
             background: white;
             padding: 40px 45px;
             border-radius: 12px;
-            box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
             margin-bottom: 40px;
         }
 
@@ -134,35 +145,35 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Big Banner Title */
+        /* Hero Banner in Serene Teal-Cyan */
         .hero-banner {
             text-align: center;
-            padding: 25px 20px;
-            background: linear-gradient(135deg, #fff5f5 0%, #ffe3e3 100%);
+            padding: 30px;
+            background: linear-gradient(135deg, #ccfbf1 0%, #e0f2fe 100%);
             border-radius: 12px;
-            border: 2px solid #fecdd3;
+            border: 2px solid #99f6e4;
             margin-bottom: 35px;
         }
 
         .hero-banner h1 {
             font-size: 3.2rem;
-            color: var(--primary);
+            color: var(--primary-dark);
             margin: 0;
             border: none;
             padding: 0;
             letter-spacing: 1.5px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.03);
         }
 
         .hero-banner p {
             font-size: 1.35rem;
-            color: #475569;
+            color: #334155;
             margin: 8px 0 0 0;
             font-weight: 600;
             letter-spacing: 1px;
         }
 
-        /* Large Headings for Classroom */
+        /* Headings for Classroom Display */
         h1 { 
             color: var(--primary); 
             font-size: 2.3rem; 
@@ -184,19 +195,20 @@
             font-size: 1.45rem; 
         }
 
-        /* High Visibility Keyword Highlights */
+        /* High Visibility Pinyin Highlights */
         .kw-initial { color: var(--kw-initial); font-weight: bold; }
         .kw-final { color: var(--kw-final); font-weight: bold; }
         .kw-tone { color: var(--kw-tone); font-weight: bold; }
+        
         .kw-pinyin { 
             background-color: #f1f5f9; 
             padding: 3px 10px; 
             border-radius: 6px; 
-            font-family: 'Courier New', Courier, monospace; 
             font-size: 1.25em; 
-            color: #d32f2f; 
+            color: #0f766e; 
             font-weight: bold;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #cbd5e1;
+            font-family: 'Andika', 'STKaiti', sans-serif;
         }
 
         /* Projector-Optimized Tables */
@@ -211,6 +223,7 @@
             border: 1.5px solid #cbd5e1;
             padding: 14px 18px;
             text-align: left;
+            font-family: 'Andika', 'Segoe UI', sans-serif;
         }
         
         th {
@@ -234,8 +247,8 @@
         }
 
         .dramatic-box {
-            background-color: #eef2ff;
-            border-left: 6px solid #4338ca;
+            background-color: #f0fdf4;
+            border-left: 6px solid #16a34a;
             padding: 20px;
             margin: 25px 0;
             border-radius: 6px;
@@ -252,7 +265,7 @@
             border: 2px solid #ffe58f;
         }
 
-        /* Rule Cards & Visual Styles */
+        /* Rule Cards & Exercise Cards */
         .rule-card, .exercise-card {
             background: #ffffff;
             border: 1px solid #e2e8f0;
@@ -280,10 +293,10 @@
             padding: 14px 20px;
             border-radius: 8px;
             text-align: center;
-            font-family: monospace;
             font-size: 1.3em;
             margin: 15px 0;
             border: 1px stroke #cbd5e1;
+            font-family: 'Andika', monospace;
         }
 
         /* Flow Badges for Rules */
@@ -292,6 +305,7 @@
             flex-wrap: wrap;
             gap: 14px;
             margin: 15px 0;
+            font-family: 'Andika', sans-serif;
         }
 
         .flow-item {
@@ -299,7 +313,6 @@
             border: 1.5px dashed #cbd5e1;
             padding: 10px 18px;
             border-radius: 25px;
-            font-family: monospace;
             font-size: 1.25em;
             display: flex;
             align-items: center;
@@ -307,7 +320,7 @@
         }
 
         .flow-arrow {
-            color: #e74c3c;
+            color: #0284c7;
             font-weight: bold;
         }
 
@@ -318,6 +331,7 @@
             font-size: 0.8em;
             color: #1e293b;
             font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
         }
 
         /* Tone Ladder Bar */
@@ -325,14 +339,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, #ff416c, #ff4b2b);
+            background: linear-gradient(90deg, #0d9488, #0284c7);
             padding: 16px 28px;
             border-radius: 40px;
             color: white;
             font-weight: bold;
             font-size: 1.4em;
             margin: 20px 0;
-            box-shadow: 0 4px 10px rgba(255, 65, 108, 0.25);
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+            font-family: 'Andika', sans-serif;
         }
 
         .ladder-step {
@@ -362,22 +377,67 @@
             font-size: 1.05rem;
         }
 
-        /* Teacher Answer Key Collapsible */
-        details.answer-key {
-            background-color: #f0fdf4;
-            border: 2px solid #bbf7d0;
+        /* Per-Question Interactive Reveal Mechanism */
+        .interactive-q-item {
+            background: #f8fafc;
+            border: 1.5px solid #e2e8f0;
             border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
-            font-size: 1.1rem;
+            padding: 16px 20px;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
         }
 
-        details.answer-key summary {
+        .interactive-q-item:hover {
+            border-color: #94a3b8;
+        }
+
+        .q-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .q-prompt {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #0f172a;
+            flex: 1 1 auto;
+        }
+
+        .reveal-btn {
+            background-color: #0284c7;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.95rem;
             font-weight: bold;
-            color: #15803d;
             cursor: pointer;
-            outline: none;
-            font-size: 1.25em;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .reveal-btn:hover {
+            background-color: #0369a1;
+        }
+
+        .answer-box {
+            display: none;
+            margin-top: 14px;
+            padding: 12px 18px;
+            background-color: #f0fdf4;
+            border-left: 5px solid #16a34a;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            color: #15803d;
+            font-weight: bold;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .answer-box.show {
+            display: block;
         }
 
         .resource-link, .hw-link {
@@ -392,9 +452,9 @@
             transition: 0.3s;
         }
         .resource-link { background-color: var(--primary); }
-        .resource-link:hover { background-color: #b71c1c; }
-        .hw-link { background-color: #15803d; }
-        .hw-link:hover { background-color: #166534; }
+        .resource-link:hover { background-color: var(--primary-dark); }
+        .hw-link { background-color: #0284c7; }
+        .hw-link:hover { background-color: #0369a1; }
         
         .center { text-align: center; }
         
@@ -413,8 +473,8 @@
     <!-- Top Navigation Bar -->
     <div class="top-nav">
         <div class="top-nav-header">
-            <h2>KUAILE XUE HANYU</h2>
-            <span>Lesson 1: Phonetics of Chinese</span>
+            <h2>UN00102 MANDARIN LANGUAGE LEVEL 1</h2>
+            <span>LESSON 1: THE PHONETICS OF CHINESE</span>
         </div>
         <div class="menu-bar">
             <button class="menu-btn active" onclick="showSection('intro', this)">1. Intro</button>
@@ -454,7 +514,7 @@
             </ul>
             
             <div class="center" style="margin: 40px 0; font-size: 2rem; background: #f8fafc; padding: 25px; border-radius: 10px; border: 2px dashed #cbd5e1;">
-                <span class="kw-initial">n</span> + <span class="kw-final">i</span> + <span class="kw-tone">ˇ</span> = <span class="kw-pinyin">nǐ</span>
+                <span class="kw-initial pinyin-font">n</span> + <span class="kw-final pinyin-font">i</span> + <span class="kw-tone pinyin-font">ˇ</span> = <span class="kw-pinyin">nǐ</span>
             </div>
         </div>
 
@@ -517,10 +577,10 @@
                 <h3 style="margin-top:0; color: #1e293b; font-size: 1.5rem;">5-Point Pitch Scale Chart</h3>
                 <svg viewBox="0 0 400 260" style="max-width: 520px; width: 100%; display: block; margin: 0 auto;">
                     <defs>
-                        <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#e74c3c"/></marker>
-                        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#27ae60"/></marker>
-                        <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#2980b9"/></marker>
-                        <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#8e44ad"/></marker>
+                        <marker id="arrow-teal" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0f766e"/></marker>
+                        <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#16a34a"/></marker>
+                        <marker id="arrow-blue" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#0284c7"/></marker>
+                        <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#7c3aed"/></marker>
                     </defs>
 
                     <!-- Pitch Level Lines -->
@@ -539,21 +599,21 @@
                     <line x1="30" y1="195" x2="310" y2="195" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="4,4"/>
                     <text x="325" y="202" font-size="18" font-weight="bold" fill="#0f172a">1 (Low)</text>
 
-                    <!-- 1st Tone (Red: 5-5) -->
-                    <line x1="30" y1="35" x2="300" y2="35" stroke="#e74c3c" stroke-width="5" marker-end="url(#arrow-red)"/>
-                    <text x="120" y="25" font-size="16" font-weight="bold" fill="#e74c3c">1st Tone (5-5)</text>
+                    <!-- 1st Tone (Teal: 5-5) -->
+                    <line x1="30" y1="35" x2="300" y2="35" stroke="#0f766e" stroke-width="5" marker-end="url(#arrow-teal)"/>
+                    <text x="120" y="25" font-size="16" font-weight="bold" fill="#0f766e">1st Tone (5-5)</text>
 
                     <!-- 2nd Tone (Green: 3-5) -->
-                    <line x1="30" y1="115" x2="300" y2="35" stroke="#27ae60" stroke-width="5" marker-end="url(#arrow-green)"/>
-                    <text x="135" y="82" font-size="16" font-weight="bold" fill="#27ae60" transform="rotate(-16 135 82)">2nd Tone (3-5)</text>
+                    <line x1="30" y1="115" x2="300" y2="35" stroke="#16a34a" stroke-width="5" marker-end="url(#arrow-green)"/>
+                    <text x="135" y="82" font-size="16" font-weight="bold" fill="#16a34a" transform="rotate(-16 135 82)">2nd Tone (3-5)</text>
 
                     <!-- 4th Tone (Purple: 5-1) -->
-                    <line x1="30" y1="35" x2="300" y2="195" stroke="#8e44ad" stroke-width="5" marker-end="url(#arrow-purple)"/>
-                    <text x="110" y="120" font-size="16" font-weight="bold" fill="#8e44ad" transform="rotate(30 110 120)">4th Tone (5-1)</text>
+                    <line x1="30" y1="35" x2="300" y2="195" stroke="#7c3aed" stroke-width="5" marker-end="url(#arrow-purple)"/>
+                    <text x="110" y="120" font-size="16" font-weight="bold" fill="#7c3aed" transform="rotate(30 110 120)">4th Tone (5-1)</text>
 
                     <!-- 3rd Tone (Blue: 2-1-4) -->
-                    <polyline points="30,155 140,195 300,75" fill="none" stroke="#2980b9" stroke-width="5" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
-                    <text x="40" y="195" font-size="16" font-weight="bold" fill="#2980b9" transform="rotate(15 40 195)">3rd Tone (2-1-4)</text>
+                    <polyline points="30,155 140,195 300,75" fill="none" stroke="#0284c7" stroke-width="5" stroke-linejoin="round" marker-end="url(#arrow-blue)"/>
+                    <text x="40" y="195" font-size="16" font-weight="bold" fill="#0284c7" transform="rotate(15 40 195)">3rd Tone (2-1-4)</text>
                 </svg>
             </div>
         </div>
@@ -955,7 +1015,7 @@
                 
                 <div style="display: flex; align-items: center; justify-content: center; gap: 20px; background: #f1f5f9; padding: 16px; border-radius: 10px; font-family: monospace; font-size: 1.2em; flex-wrap: wrap;">
                     <div><span style="color:#dc2626;">Tiānānmén</span> (Wrong: Read as "Tiā - nān - mén")</div>
-                    <span style="color:#e74c3c; font-weight:bold; font-size:1.4em;">&rarr;</span> 
+                    <span style="color:#0284c7; font-weight:bold; font-size:1.4em;">&rarr;</span> 
                     <div style="background: #fef08a; padding: 4px 12px; border-radius: 6px; border: 2px dashed #ca8a04;"><strong>Tiān'ānmén</strong> (Correct: Clear "Tian" & "an")</div>
                 </div>
             </div>
@@ -1003,7 +1063,7 @@
             </div>
         </div>
 
-        <!-- Section 6: In-Class Exercises -->
+        <!-- Section 6: In-Class Exercises (Per-Question Reveal) -->
         <div id="exercises" class="section">
             <h1>
                 <span>6. In-Class Exercises (KuaiLe Xue HanYu Practice)</span>
@@ -1016,20 +1076,108 @@
                     <span>Exercise A: Identify Initials, Finals & Complete Syllables</span>
                     <span class="page-badge">KLXHY pg 6</span>
                 </h3>
-                <p><strong>1. Identify the Initials and Finals:</strong> Identify the initial consonant and final vowel for each syllable below:</p>
-                <div class="rule-formula" style="letter-spacing: 4px; font-weight: bold;">
-                    bāo &nbsp;|&nbsp; shuǐ &nbsp;|&nbsp; míng &nbsp;|&nbsp; tiān &nbsp;|&nbsp; chòu &nbsp;|&nbsp; zhāng &nbsp;|&nbsp; xiào
-                </div>
                 
-                <p style="margin-top: 25px;"><strong>2. Listening Practice:</strong> Fill in the missing initial or final based on teacher's dictation:</p>
-                <table style="font-size: 1.05rem;">
-                    <tr><th>#</th><th>Character</th><th>Pinyin Frame</th><th>#</th><th>Character</th><th>Pinyin Frame</th></tr>
-                    <tr><td>1</td><td>中</td><td>zh_ng</td><td>6</td><td>学</td><td>_ue</td></tr>
-                    <tr><td>2</td><td>见</td><td>j_</td><td>7</td><td>日</td><td>_i</td></tr>
-                    <tr><td>3</td><td>好</td><td>h_</td><td>8</td><td>去</td><td>_u</td></tr>
-                    <tr><td>4</td><td>都</td><td>d_</td><td>9</td><td>拍</td><td>_ai</td></tr>
-                    <tr><td>5</td><td>想</td><td>x_</td><td>10</td><td>也</td><td>_e</td></tr>
-                </table>
+                <p><strong>1. Identify the Initials and Finals:</strong> Identify the initial consonant and final vowel for each syllable below:</p>
+                
+                <div class="interactive-q-item">
+                    <div class="q-header">
+                        <div class="q-prompt">bāo &nbsp;|&nbsp; shuǐ &nbsp;|&nbsp; míng &nbsp;|&nbsp; tiān &nbsp;|&nbsp; chòu &nbsp;|&nbsp; zhāng &nbsp;|&nbsp; xiào</div>
+                        <button class="reveal-btn" onclick="toggleAnswer('ex-a1')">Show Answer</button>
+                    </div>
+                    <div id="ex-a1" class="answer-box">
+                        • bāo: Initial <strong>b</strong>, Final <strong>ao</strong><br>
+                        • shuǐ: Initial <strong>sh</strong>, Final <strong>ui</strong><br>
+                        • míng: Initial <strong>m</strong>, Final <strong>ing</strong><br>
+                        • tiān: Initial <strong>t</strong>, Final <strong>ian</strong><br>
+                        • chòu: Initial <strong>ch</strong>, Final <strong>ou</strong><br>
+                        • zhāng: Initial <strong>zh</strong>, Final <strong>ang</strong><br>
+                        • xiào: Initial <strong>x</strong>, Final <strong>iao</strong>
+                    </div>
+                </div>
+
+                <p style="margin-top: 25px;"><strong>2. Listening Practice:</strong> Fill in the missing initial or final based on dictation:</p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">1. 中 &rarr; zh_ng</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-1')">Answer</button>
+                        </div>
+                        <div id="ex-a2-1" class="answer-box">zhōng (Final: -ong)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">2. 见 &rarr; j_</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-2')">Answer</button>
+                        </div>
+                        <div id="ex-a2-2" class="answer-box">jiàn (Final: -ian)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">3. 好 &rarr; h_</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-3')">Answer</button>
+                        </div>
+                        <div id="ex-a2-3" class="answer-box">hǎo (Final: -ao)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">4. 都 &rarr; d_</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-4')">Answer</button>
+                        </div>
+                        <div id="ex-a2-4" class="answer-box">dōu (Final: -ou)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">5. 想 &rarr; x_</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-5')">Answer</button>
+                        </div>
+                        <div id="ex-a2-5" class="answer-box">xiǎng (Final: -iang)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">6. 学 &rarr; _ue</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-6')">Answer</button>
+                        </div>
+                        <div id="ex-a2-6" class="answer-box">xué (Initial: x-)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">7. 日 &rarr; _i</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-7')">Answer</button>
+                        </div>
+                        <div id="ex-a2-7" class="answer-box">rì (Initial: r-)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">8. 去 &rarr; _u</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-8')">Answer</button>
+                        </div>
+                        <div id="ex-a2-8" class="answer-box">qù (Initial: q-)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">9. 拍 &rarr; _ai</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-9')">Answer</button>
+                        </div>
+                        <div id="ex-a2-9" class="answer-box">pāi (Initial: p-)</div>
+                    </div>
+
+                    <div class="interactive-q-item">
+                        <div class="q-header">
+                            <div class="q-prompt">10. 也 &rarr; _e</div>
+                            <button class="reveal-btn" onclick="toggleAnswer('ex-a2-10')">Answer</button>
+                        </div>
+                        <div id="ex-a2-10" class="answer-box">yě (Zero Initial / y-)</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Exercise B -->
@@ -1039,11 +1187,57 @@
                     <span class="page-badge">KLXHY pg 6</span>
                 </h3>
                 <p>Place the correct tone marks over the appropriate vowel according to tone rules:</p>
-                <table style="font-size: 1.05rem;">
-                    <tr><td>1. ma (1st tone)</td><td>2. shi (2nd tone)</td><td>3. lü (3rd tone)</td><td>4. cuo (4th tone)</td></tr>
-                    <tr><td>5. niu (1st tone)</td><td>6. jie (2nd tone)</td><td>7. tiao (3rd tone)</td><td>8. shuai (4th tone)</td></tr>
-                    <tr><td>9. huang (1st tone)</td><td>10. xue (2nd tone)</td><td>11. zou (3rd tone)</td><td>12. nian (4th tone)</td></tr>
-                </table>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;">
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">1. ma (1st tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b1')">Answer</button></div>
+                        <div id="ex-b1" class="answer-box">mā</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">2. shi (2nd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b2')">Answer</button></div>
+                        <div id="ex-b2" class="answer-box">shí</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">3. lü (3rd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b3')">Answer</button></div>
+                        <div id="ex-b3" class="answer-box">lǚ</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">4. cuo (4th tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b4')">Answer</button></div>
+                        <div id="ex-b4" class="answer-box">cuò</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">5. niu (1st tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b5')">Answer</button></div>
+                        <div id="ex-b5" class="answer-box">niū</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">6. jie (2nd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b6')">Answer</button></div>
+                        <div id="ex-b6" class="answer-box">jié</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">7. tiao (3rd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b7')">Answer</button></div>
+                        <div id="ex-b7" class="answer-box">tiǎo</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">8. shuai (4th tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b8')">Answer</button></div>
+                        <div id="ex-b8" class="answer-box">shuài</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">9. huang (1st tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b9')">Answer</button></div>
+                        <div id="ex-b9" class="answer-box">huāng</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">10. xue (2nd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b10')">Answer</button></div>
+                        <div id="ex-b10" class="answer-box">xué</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">11. zou (3rd tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b11')">Answer</button></div>
+                        <div id="ex-b11" class="answer-box">zǒu</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">12. nian (4th tone)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-b12')">Answer</button></div>
+                        <div id="ex-b12" class="answer-box">niàn</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Exercise C -->
@@ -1052,21 +1246,50 @@
                     <span>Exercise C: Tone Discrimination</span>
                     <span class="page-badge">KLXHY pg 6 - 7</span>
                 </h3>
+                
                 <p><strong>1. Listen & Select (Choose A, B, C, or D):</strong></p>
-                <ol style="line-height: 2;">
-                    <li>Teacher dictation: (前) &rarr; A. qiān &nbsp; B. qián &nbsp; C. qiǎn &nbsp; D. qiàn</li>
-                    <li>Teacher dictation: (脆) &rarr; A. cuī &nbsp; B. cuí &nbsp; C. cuǐ &nbsp; D. cuì</li>
-                    <li>Teacher dictation: (者) &rarr; A. zhē &nbsp; B. zhé &nbsp; C. zhě &nbsp; D. zhè</li>
-                    <li>Teacher dictation: (收) &rarr; A. shōu &nbsp; B. shóu &nbsp; C. shǒu &nbsp; D. shòu</li>
-                    <li>Teacher dictation: (聊) &rarr; A. liāo &nbsp; B. liáo &nbsp; C. liǎo &nbsp; D. liào</li>
-                    <li>Teacher dictation: (吃) &rarr; A. chī &nbsp; B. chí &nbsp; C. chǐ &nbsp; D. chì</li>
-                </ol>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">1. Dictation: (前) &rarr; A. qiān &nbsp; B. qián &nbsp; C. qiǎn &nbsp; D. qiàn</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-1')">Answer</button></div>
+                    <div id="ex-c1-1" class="answer-box">B. qián (2nd Tone)</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">2. Dictation: (脆) &rarr; A. cuī &nbsp; B. cuí &nbsp; C. cuǐ &nbsp; D. cuì</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-2')">Answer</button></div>
+                    <div id="ex-c1-2" class="answer-box">D. cuì (4th Tone)</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">3. Dictation: (者) &rarr; A. zhē &nbsp; B. zhé &nbsp; C. zhě &nbsp; D. zhè</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-3')">Answer</button></div>
+                    <div id="ex-c1-3" class="answer-box">C. zhě (3rd Tone)</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">4. Dictation: (收) &rarr; A. shōu &nbsp; B. shóu &nbsp; C. shǒu &nbsp; D. shòu</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-4')">Answer</button></div>
+                    <div id="ex-c1-4" class="answer-box">A. shōu (1st Tone)</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">5. Dictation: (聊) &rarr; A. liāo &nbsp; B. liáo &nbsp; C. liǎo &nbsp; D. liào</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-5')">Answer</button></div>
+                    <div id="ex-c1-5" class="answer-box">B. liáo (2nd Tone)</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">6. Dictation: (吃) &rarr; A. chī &nbsp; B. chí &nbsp; C. chǐ &nbsp; D. chì</span> <button class="reveal-btn" onclick="toggleAnswer('ex-c1-6')">Answer</button></div>
+                    <div id="ex-c1-6" class="answer-box">A. chī (1st Tone)</div>
+                </div>
 
                 <p style="margin-top:25px;"><strong>2. Write Tone Marks:</strong> Write the correct tone mark heard:</p>
-                <p class="rule-formula" style="font-weight: bold;">
-                    shu (书) | zhi (纸) | yao (要) | suan (酸) | que (确) | ge (哥) <br>
-                    ren (人) | sui (岁) | wan (晚) | guo (国) | nü (女) | cha (茶)
-                </p>
+                <div class="interactive-q-item">
+                    <div class="q-header">
+                        <div class="q-prompt">shu(书) | zhi(纸) | yao(要) | suan(酸) | que(确) | ge(哥)<br>ren(人) | sui(岁) | wan(晚) | guo(国) | nü(女) | cha(茶)</div>
+                        <button class="reveal-btn" onclick="toggleAnswer('ex-c2')">Show Answers</button>
+                    </div>
+                    <div id="ex-c2" class="answer-box">
+                        shū (1st), zhǐ (3rd), yào (4th), suān (1st), què (4th), gē (1st)<br>
+                        rén (2nd), suì (4th), wǎn (3rd), guó (2nd), nǚ (3rd), chá (2nd)
+                    </div>
+                </div>
             </div>
 
             <!-- Exercise D -->
@@ -1076,13 +1299,49 @@
                     <span class="page-badge">KLXHY pg 7</span>
                 </h3>
                 <p>Listen and identify the correct Pinyin option you hear:</p>
-                <table style="font-size: 1.05rem;">
-                    <tr><td>1. A. zhuō vs B. chuō (桌)</td><td>6. A. dīng vs B. tīng (听)</td></tr>
-                    <tr><td>2. A. ròu vs B. ruò (若)</td><td>7. A. jiāo vs B. qiāo (敲)</td></tr>
-                    <tr><td>3. A. bǐ vs B. pǐ (笔)</td><td>8. A. yuè vs B. yè (叶)</td></tr>
-                    <tr><td>4. A. nǔ vs B. nǚ (女)</td><td>9. A. xī vs B. sī (西)</td></tr>
-                    <tr><td>5. A. kǒu vs B. gǒu (口)</td><td>10. A. jiǔ vs B. xiǔ (九)</td></tr>
-                </table>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">1. A. zhuō vs B. chuō (桌)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d1')">Answer</button></div>
+                        <div id="ex-d1" class="answer-box">A. zhuō</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">2. A. ròu vs B. ruò (若)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d2')">Answer</button></div>
+                        <div id="ex-d2" class="answer-box">A. ròu</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">3. A. bǐ vs B. pǐ (笔)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d3')">Answer</button></div>
+                        <div id="ex-d3" class="answer-box">A. bǐ</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">4. A. nǔ vs B. nǚ (女)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d4')">Answer</button></div>
+                        <div id="ex-d4" class="answer-box">B. nǚ</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">5. A. kǒu vs B. gǒu (口)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d5')">Answer</button></div>
+                        <div id="ex-d5" class="answer-box">A. kǒu</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">6. A. dīng vs B. tīng (听)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d6')">Answer</button></div>
+                        <div id="ex-d6" class="answer-box">B. tīng</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">7. A. jiāo vs B. qiāo (敲)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d7')">Answer</button></div>
+                        <div id="ex-d7" class="answer-box">B. qiāo</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">8. A. yuè vs B. yè (叶)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d8')">Answer</button></div>
+                        <div id="ex-d8" class="answer-box">B. yè</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">9. A. xī vs B. sī (西)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d9')">Answer</button></div>
+                        <div id="ex-d9" class="answer-box">A. xī</div>
+                    </div>
+                    <div class="interactive-q-item">
+                        <div class="q-header"><span class="q-prompt">10. A. jiǔ vs B. xiǔ (九)</span> <button class="reveal-btn" onclick="toggleAnswer('ex-d10')">Answer</button></div>
+                        <div id="ex-d10" class="answer-box">A. jiǔ</div>
+                    </div>
+                </div>
             </div>
 
             <!-- Exercise E -->
@@ -1092,47 +1351,32 @@
                     <span class="page-badge">KLXHY pg 7</span>
                 </h3>
                 <p>Correct tone numbers into tone marks, apply capitalization, and fix spacing/word boundary formatting:</p>
-                <ol style="line-height: 2.2; font-family: monospace;">
-                    <li>lin2 na4 shi4 wo3 de peng2you.</li>
-                    <li>ta1 jiao4 wang2 xiao3yun2.</li>
-                    <li>chen2 lao3shi1 hen3 mang2.</li>
-                    <li>wo3men xi3huan xue2xi2 han4yu3.</li>
-                    <li>ni3men dou1 bu2shi4 zhong1guo2 ren2.</li>
-                </ol>
-            </div>
 
-            <!-- Collapsible Teacher Answer Key -->
-            <details class="answer-key">
-                <summary>🔑 Teacher Reference Answer Key (Click to Reveal)</summary>
-                <div style="margin-top: 15px; font-size: 1.05em; line-height: 1.9;">
-                    <h4>Exercise A Answers:</h4>
-                    <ul>
-                        <li><strong>Initials/Finals:</strong> b-ao, sh-ui, m-ing, t-ian, ch-ou, zh-ang, x-iao.</li>
-                        <li><strong>Missing Fill-in:</strong> 1. zhong, 2. jian, 3. hao, 4. dou, 5. xiang, 6. xue, 7. ri (r-i), 8. qu, 9. pai, 10. ye.</li>
-                    </ul>
-
-                    <h4>Exercise B Answers:</h4>
-                    <p>mā, shí, lǚ, cuò, niū, jié, tiǎo, shuài, huāng, xué, zǒu, niàn</p>
-
-                    <h4>Exercise C Answers:</h4>
-                    <ul>
-                        <li><strong>1. MCQs:</strong> 1. B (qián), 2. D (cuì), 3. C (zhě), 4. A (shōu), 5. B (liáo), 6. A (chī)</li>
-                        <li><strong>2. Tones:</strong> shū (1), zhǐ (3), yào (4), suān (1), què (4), gē (1), rén (2), suì (4), wǎn (3), guó (2), nǚ (3), chá (2)</li>
-                    </ul>
-
-                    <h4>Exercise D Answers:</h4>
-                    <p>1. A (zhuō), 2. A (ròu), 3. A (bǐ), 4. B (nǚ), 5. A (kǒu), 6. B (tīng), 7. B (qiāo), 8. B (yè), 9. A (xī), 10. A (jiǔ)</p>
-
-                    <h4>Exercise E Answers:</h4>
-                    <ol>
-                        <li>Lín Nà shì wǒ de péngyou.</li>
-                        <li>Tā jiào Wáng Xiǎoyún.</li>
-                        <li>Chén lǎoshī hěn máng.</li>
-                        <li>Wǒmen xǐhuan xuéxí Hànyǔ.</li>
-                        <li>Nǐmen dōu búshì Zhōngguó rén.</li>
-                    </ol>
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">1. lin2 na4 shi4 wo3 de peng2you.</span> <button class="reveal-btn" onclick="toggleAnswer('ex-e1')">Answer</button></div>
+                    <div id="ex-e1" class="answer-box">Lín Nà shì wǒ de péngyou.</div>
                 </div>
-            </details>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">2. ta1 jiao4 wang2 xiao3yun2.</span> <button class="reveal-btn" onclick="toggleAnswer('ex-e2')">Answer</button></div>
+                    <div id="ex-e2" class="answer-box">Tā jiào Wáng Xiǎoyún.</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">3. chen2 lao3shi1 hen3 mang2.</span> <button class="reveal-btn" onclick="toggleAnswer('ex-e3')">Answer</button></div>
+                    <div id="ex-e3" class="answer-box">Chén lǎoshī hěn máng.</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">4. wo3men xi3huan xue2xi2 han4yu3.</span> <button class="reveal-btn" onclick="toggleAnswer('ex-e4')">Answer</button></div>
+                    <div id="ex-e4" class="answer-box">Wǒmen xǐhuan xuéxí Hànyǔ.</div>
+                </div>
+
+                <div class="interactive-q-item">
+                    <div class="q-header"><span class="q-prompt">5. ni3men dou1 bu2shi4 zhong1guo2 ren2.</span> <button class="reveal-btn" onclick="toggleAnswer('ex-e5')">Answer</button></div>
+                    <div id="ex-e5" class="answer-box">Nǐmen dōu búshì Zhōngguó rén.</div>
+                </div>
+            </div>
         </div>
 
         <!-- Section 7: Homework & Review -->
@@ -1142,37 +1386,53 @@
                 <span class="page-badge">KLXHY pg 7</span>
             </h1>
             
-            <h3 style="color: #166534; font-size: 1.5rem;">📝 Homework Assignments</h3>
-            <p>Please complete the following exercises before our next class:</p>
-            <a href="http://tiny.cc/INITIALS" target="_blank" class="hw-link">1. Initials Practice</a>
-            <a href="http://tiny.cc/SIMPLEFINALS" target="_blank" class="hw-link">2. Simple Finals Practice</a>
-            <a href="http://tiny.cc/OTHERFINALS" target="_blank" class="hw-link">3. Other Finals Practice</a>
+            <h3 style="color: #166534; font-size: 1.5rem;">📝 Homework Padlet Wall</h3>
+            <p>Please click the link below to access your homework assignment board:</p>
+            
+            <div>
+                <a href="https://padlet.com/zixianyzx1/the-phonetics-of-chinese-dd72itzdjhupak1n" target="_blank" class="hw-link" style="font-size: 1.25rem;">
+                    📌 Open Padlet Homework Wall
+                </a>
+            </div>
 
-            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 40px;">🎧 Pinyin Chart Review</h3>
+            <h3 style="color: var(--primary); font-size: 1.5rem; margin-top: 40px;">🎧 Interactive Pinyin Chart Review</h3>
             <p>Use the audio playback feature on this interactive chart to practice repeating after native speakers.</p>
             <a href="https://yoyochinese.com/chinese-learning-tools/Mandarin-Chinese-pronunciation-lesson/pinyin-chart-table" target="_blank" class="resource-link">
-                Open Yoyo Pinyin Chart
+                Open Yoyo Pinyin Chart Table
             </a>
         </div>
 
     </div>
 
-    <!-- JavaScript for Navigation -->
+    <!-- JavaScript for Navigation & Per-Question Interactive Reveal -->
     <script>
+        // Tab Navigation Switcher
         function showSection(sectionId, btnElement) {
-            // Hide all sections
             document.querySelectorAll('.section').forEach(function(sec) {
                 sec.classList.remove('active');
             });
-            // Show target section
             document.getElementById(sectionId).classList.add('active');
             
-            // Remove active class from all buttons
             document.querySelectorAll('.menu-btn').forEach(function(btn) {
                 btn.classList.remove('active');
             });
-            // Add active class to clicked button
             btnElement.classList.add('active');
+        }
+
+        // Per-Question Answer Reveal Toggle
+        function toggleAnswer(answerId) {
+            const answerBox = document.getElementById(answerId);
+            const btn = answerBox.previousElementSibling.querySelector('.reveal-btn');
+            
+            if (answerBox.classList.contains('show')) {
+                answerBox.classList.remove('show');
+                btn.innerText = 'Show Answer';
+                btn.style.backgroundColor = '#0284c7';
+            } else {
+                answerBox.classList.add('show');
+                btn.innerText = 'Hide Answer';
+                btn.style.backgroundColor = '#64748b';
+            }
         }
     </script>
 </body>
