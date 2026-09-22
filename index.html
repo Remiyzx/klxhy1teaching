@@ -79,11 +79,11 @@
         }
 
         .menu-btn {
-            padding: 14px 20px;
+            padding: 14px 18px;
             border: none;
             background: none;
             color: #ecf0f1;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.25s ease;
@@ -481,9 +481,10 @@
             <button class="menu-btn" onclick="showSection('tones', this)">2. Four Tones</button>
             <button class="menu-btn" onclick="showSection('initials', this)">3. Initials (21)</button>
             <button class="menu-btn" onclick="showSection('finals', this)">4. Finals (36)</button>
-            <button class="menu-btn" onclick="showSection('rules', this)">5. Spelling Rules</button>
-            <button class="menu-btn" onclick="showSection('exercises', this)">6. In-Class Exercises</button>
-            <button class="menu-btn" onclick="showSection('resources', this)">7. Homework & Review</button>
+            <button class="menu-btn" onclick="showSection('break', this)">5. Break & Attendance</button>
+            <button class="menu-btn" onclick="showSection('rules', this)">6. Spelling Rules</button>
+            <button class="menu-btn" onclick="showSection('exercises', this)">7. In-Class Exercises</button>
+            <button class="menu-btn" onclick="showSection('resources', this)">8. Homework & Review</button>
         </div>
     </div>
 
@@ -866,14 +867,67 @@
             </table>
         </div>
 
-        <!-- Section 5: Rules -->
+        <!-- Section 5: Break & Attendance (New Inserted Section) -->
+        <div id="break" class="section">
+            <div class="hero-banner" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); border-color: #bbf7d0;">
+                <h1 style="color: #15803d;">🍵 Class Break & Attendance Check</h1>
+                <p style="color: #166534;">Time to rest your mind and scan the QR code to submit your attendance!</p>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center; margin: 30px 0;">
+                
+                <!-- Rest Tips Box -->
+                <div style="flex: 1 1 320px; background: #f8fafc; border: 2px solid #cbd5e1; border-radius: 12px; padding: 25px;">
+                    <h3 style="margin-top: 0; color: #0f766e;">💡 Mid-Class Break Rules:</h3>
+                    <ul style="line-height: 2; font-size: 1.15rem; margin-bottom: 0;">
+                        <li>💧 Grab a glass of water & stretch your back!</li>
+                        <li>👀 Give your eyes a short break from the screen.</li>
+                        <li>📱 Scan the QR Code on screen to record your class attendance via ITEL / Form.</li>
+                    </ul>
+                </div>
+
+                <!-- QR Code Display Box -->
+                <div style="flex: 0 0 300px; text-align: center; background: white; border: 3px dashed #0284c7; border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="font-size: 1.2rem; font-weight: bold; color: #0284c7; margin-bottom: 15px;">📱 ATTENDANCE QR CODE</div>
+                    
+                    <!-- SVG Visual Placeholder for Classroom QR Code -->
+                    <div style="width: 200px; height: 200px; margin: 0 auto; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 2px solid #cbd5e1;">
+                        <svg width="150" height="150" viewBox="0 0 100 100" fill="#0f172a">
+                            <!-- QR Code Visual Pattern -->
+                            <rect x="10" y="10" width="25" height="25" fill="#0f172a"/>
+                            <rect x="15" y="15" width="15" height="15" fill="#ffffff"/>
+                            <rect x="18" y="18" width="9" height="9" fill="#0f172a"/>
+                            
+                            <rect x="65" y="10" width="25" height="25" fill="#0f172a"/>
+                            <rect x="70" y="15" width="15" height="15" fill="#ffffff"/>
+                            <rect x="73" y="18" width="9" height="9" fill="#0f172a"/>
+                            
+                            <rect x="10" y="65" width="25" height="25" fill="#0f172a"/>
+                            <rect x="15" y="70" width="15" height="15" fill="#ffffff"/>
+                            <rect x="18" y="73" width="9" height="9" fill="#0f172a"/>
+                            
+                            <rect x="40" y="15" width="12" height="12" fill="#0f172a"/>
+                            <rect x="40" y="40" width="20" height="20" fill="#0f172a"/>
+                            <rect x="65" y="65" width="15" height="15" fill="#0f172a"/>
+                            <rect x="75" y="45" width="10" height="10" fill="#0f172a"/>
+                            <rect x="45" y="75" width="12" height="12" fill="#0f172a"/>
+                        </svg>
+                    </div>
+                    
+                    <p style="font-size: 0.95rem; color: #64748b; margin: 12px 0 0 0; font-weight: bold;">Scan with Phone Camera</p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Section 6: Rules -->
         <div id="rules" class="section">
             <h1>
-                <span>5. Complete Pinyin Spelling Rules</span>
+                <span>6. Complete Pinyin Spelling Rules</span>
                 <span class="page-badge">KLXHY pg 4 - 5</span>
             </h1>
             
-           <!-- Rule 1: Bodyguards (With a, o, e Explanation) -->
+            <!-- Rule 1: Bodyguards (Structured Layout) -->
             <div class="rule-card">
                 <h3>
                     <span>🛡️ Rule #1: The "Y & W" Bodyguards (Zero Initial Syllables)</span>
@@ -1081,10 +1135,10 @@
             </div>
         </div>
 
-        <!-- Section 6: In-Class Exercises (Per-Question Reveal) -->
+        <!-- Section 7: In-Class Exercises (Per-Question Reveal) -->
         <div id="exercises" class="section">
             <h1>
-                <span>6. In-Class Exercises (KuaiLe Xue HanYu Practice)</span>
+                <span>7. In-Class Exercises (KuaiLe Xue HanYu Practice)</span>
                 <span class="page-badge">KLXHY pg 6 - 7</span>
             </h1>
             
@@ -1397,10 +1451,10 @@
             </div>
         </div>
 
-        <!-- Section 7: Homework & Review -->
+        <!-- Section 8: Homework & Review -->
         <div id="resources" class="section">
             <h1>
-                <span>7. Post-Class Review & Homework</span>
+                <span>8. Post-Class Review & Homework</span>
                 <span class="page-badge">KLXHY pg 7</span>
             </h1>
             
